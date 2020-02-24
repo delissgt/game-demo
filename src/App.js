@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import {BrowserRouter, Route } from 'react-router-dom';
-import Mylogin from './containers/login';
-import Games from './containers/games';
-import Game1Attribute from "./components/Game1Attribute";
+import Login from './containers/Login';
+import Games from './containers/Games';
+import Attribute from "./components/GameAttribute/Attribute";
 
 class App extends Component {
 
@@ -11,10 +11,10 @@ class App extends Component {
         return (
             <BrowserRouter>
             <div className="App">
-                Hola Deliss
-                <Route exact path="/" component={Mylogin}/>
+                {/*Hola Deliss*/}
+                <Route exact path="/" component={Login}/>
                 <Route exact path='/games' component={Games}/>
-                <Route exact path="/game-attributes" component={Game1Attribute} />
+                <Route exact path="/games/attributes" component={Attribute} />
             </div>
             </BrowserRouter>
         );

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 // import car from '../assets/ToyCarRed.png';
-import bird from '../assets/bird.png';
+import bird from '../../assets/bird.png';
 import {Table, Divider, Tag, Input} from 'antd';
 
 // import {Radio} from "antd";
@@ -39,7 +39,7 @@ import {Table, Divider, Tag, Input} from 'antd';
 // export default Game1AttributeTest;
 
 
-class Game1AttributeTest extends Component {
+class AttributeTest extends Component {
     state = {
         rotate: 90,
         rotateY: 90
@@ -113,4 +113,4 @@ class Game1AttributeTest extends Component {
     }
 }
 
-export default Game1AttributeTest;
+export default AttributeTest;

@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 // import {} from "react-blockly";  NO SE USA
 
-import BlocklyComponent, {Block, Value, Field, Shadow} from "./Blocky";
-import './blocks/customblocks'
+import BlocklyComponent, {Block, Value, Field, Shadow} from "../Blocky";
+import '../blocks/customblocks'
 import {Button} from "antd";
 
-class AttributeExercise extends Component {
+class AttributeExerciseBlockly extends Component {
     render() {
         const checkAnswers = () => {
             console.log('Revisar respuestas..')
@@ -62,4 +62,4 @@ class AttributeExercise extends Component {
 
 }
 
-export default AttributeExercise;
+export default AttributeExerciseBlockly;

@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import toyCar from '../assets/ToyCarRed.png';
-import carTransformed from '../assets/ToyCarRedTransformed.png';
+import toyCar from '../../assets/ToyCarRed.png';
+import carTransformed from '../../assets/ToyCarRedTransformed.png';
 import {Button, Table, notification} from "antd";
 // import {Menu, Dropdown, Button, Icon, message, Table} from "antd";
 // import ModalFinishedGame from "./ModalFinishedGame";
 import {GlassMagnifier} from "react-image-magnifiers";
 // const {Table} = antd;
 
-class Game1AttributeExerciseOption2 extends Component {
+class AttributeExercise extends Component {
     // constructor
     state= {
         buttonDisable: true,
@@ -113,7 +113,7 @@ class Game1AttributeExerciseOption2 extends Component {
 
 }
 
-export default Game1AttributeExerciseOption2;
+export default AttributeExercise;
 
 
 // render()

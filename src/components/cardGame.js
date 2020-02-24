@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Icon, Button, Rate} from "antd";
 
-// import Game1Attribute from "./Game1Attribute";
+// import Attribute from "./Attribute";
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 const CardGame = (props) => {

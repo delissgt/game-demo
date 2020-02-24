@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {Steps, Button, message} from "antd";
-import definition from '../assets/game1Attributes.png';
-import example from '../assets/game1AttributesExample.png';
+import definition from '../../assets/game1Attributes.png';
+import example from '../../assets/game1AttributesExample.png';
 
-// import Game1AttributeExercise from './Game1AttributeExercise';
-import Game1AttributeExerciseOption2 from "./Game1AttributeExerciseOption2";
-import Game1AttributeTest from "./Game1AttributeTest";
-import './steps.css';
+// import AttributeExerciseBlockly from './AttributeExerciseBlockly';
+import AttributeExercise from "./AttributeExercise";
+import AttributeTest from "./AttributeTest";
+import '../steps.css';
 import {Link} from 'react-router-dom';
 
 
@@ -24,19 +24,15 @@ const steps=[
     },
     {
         title: 'Ejercicio',
-        // content: <Game1AttributeExercise/>,
-        // content: <Game1AttributeExerciseOption2/>,
-        content: <Game1AttributeTest/>,
+        content: <AttributeExercise/>,
     },
     {
         title: 'Test',
-        // content: <Game1AttributeTest/>,
-        content: <Game1AttributeExerciseOption2/>,
-
+        content: <AttributeTest/>,
     }
 ];
 
-class Game1Attribute extends Component {
+class Attribute extends Component {
 
     constructor(props) {
         super(props);
@@ -100,4 +96,4 @@ class Game1Attribute extends Component {
 
 }
 
-export default Game1Attribute;
+export default Attribute;

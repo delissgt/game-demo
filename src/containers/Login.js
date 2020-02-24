@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Form, Button, Input} from 'antd';
 import {Link} from 'react-router-dom';
 
-class Mylogin extends Component {
+class Login extends Component {
     state= {
         pageGame: 'something'
     };
@@ -35,4 +35,4 @@ class Mylogin extends Component {
     }
 }
 
-export default Mylogin;
+export default Login;
