@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import toyCar from '../../assets/ToyCarRed.png';
 import carTransformed from '../../assets/ToyCarRedTransformed.png';
-import {Button, Table, notification, Radio} from "antd";
+import {Button, notification, Radio} from "antd";
 // import {Menu, Dropdown, Button, Icon, message, Table} from "antd";
 // import ModalFinishedGame from "./ModalFinishedGame";
 import {GlassMagnifier} from "react-image-magnifiers";

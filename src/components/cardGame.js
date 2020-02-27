@@ -2,12 +2,13 @@ import React from "react";
 import {Card, Icon, Button, Rate} from "antd";
 
 // import Attribute from "./Attribute";
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const CardGame = (props) => {
     // console.log('props en CARD', props);
     // console.log('props GAME LINK', props.game);
     let drawCard = () => {
+        // eslint-disable-next-line array-callback-return
         props.game.map(g => {
            console.log('ONE GAME ', g);
         });

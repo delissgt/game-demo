@@ -119,10 +119,11 @@ class AttributeTestMedium extends Component{
         console.log('check EstadoTYPEEE', typeof (this.state.targetKeys));
         const inputAnswers = this.state.targetKeys;
         let qualification = 0;
+        // eslint-disable-next-line array-callback-return
         inputAnswers.map(a => {
             console.log(a);
             console.log(a);
-            // eslint-disable-next-line no-unused-vars
+            // eslint-disable-next-line no-unused-vars,array-callback-return
             const result = badAnswers.filter(ba =>  {
                 // eslint-disable-next-line no-unused-expressions
                 ba === parseInt(a) ? qualification+= 20 : ''

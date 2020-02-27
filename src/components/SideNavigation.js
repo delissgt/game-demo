@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout, Menu, Icon, Button} from "antd";
+import {Layout, Menu, Icon} from "antd";
 
 import CardGame from "./cardGame";
 

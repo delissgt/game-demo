@@ -19,7 +19,7 @@ const {Step} = Steps;
 const steps=[
     {
         title: 'Introducción',
-        content: <img src={definition}/> ,
+        content: <img alt='attribute definition' src={definition}/> ,
     },
     {
         title: 'Ejemplo',

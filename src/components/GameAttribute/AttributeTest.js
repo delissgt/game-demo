@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 import bird from '../../assets/bird.png';
-import {Table, Divider, Tag, Input, Button, notification} from 'antd';
+import {Table, Input, Button, notification} from 'antd';
 
 
 class AttributeTest extends Component {
@@ -81,8 +81,8 @@ class AttributeTest extends Component {
 
 
     render() {
-        console.log('1111111111', this.props);
-        console.log('1111111111', this.state);
+        console.log('test props', this.props);
+        console.log('test state', this.state);
         return(
             <div>
                 <div style={{width: '100%' }}>
@@ -91,7 +91,7 @@ class AttributeTest extends Component {
             <div style={{display: "inline-flex"}}>
 
                 <div style={{ margin: '1%'}}>
-                    <img src={bird}
+                    <img alt='secret-character' src={bird}
                          style={{
                              width: 300, height:300,
                              transform: 'rotate('+this.state.rotate+ 'deg) rotateY('+this.state.rotateY+'deg)' }}/>
