@@ -6,7 +6,10 @@ import example from '../../assets/game1AttributesExample.png';
 // import AttributeExerciseBlockly from './AttributeExerciseBlockly';
 import AttributeExercise from "./AttributeExercise";
 import AttributeTest from "./AttributeTest";
+import AttributeTestMedium from "./AttributeTestMedium";
+import AttributeDifficult from "./AttributeDifficult";
 import '../steps.css';
+
 import {Link} from 'react-router-dom';
 
 
@@ -27,8 +30,16 @@ const steps=[
         content: <AttributeExercise/>,
     },
     {
-        title: 'Test',
+        title: 'Nivel Facil',
         content: <AttributeTest/>,
+    },
+    {
+        title: 'Nivel Medio',
+        content: <AttributeTestMedium/>,
+    },
+    {
+        title: 'Nivel Difícil',
+        content: <AttributeDifficult/>,
     }
 ];
 
@@ -58,7 +69,7 @@ class Attribute extends Component {
 
         return(
             <div style={{ 'padding': 20 }}>
-                Jueguito 1
+                {/*Jueguito 1*/}
                 <Steps current={current}>
                     {steps.map(item => ( <Step
                             key={item.title}

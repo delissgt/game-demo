@@ -1,48 +1,14 @@
 import React, {Component} from "react";
 
-// import car from '../assets/ToyCarRed.png';
 import bird from '../../assets/bird.png';
-import {Table, Divider, Tag, Input} from 'antd';
-
-// import {Radio} from "antd";
-// class Game1AttributeTest extends Component {
-//     state = {
-//       value: 1
-//     };
-//
-//     onChange = e => {
-//       console.log('radio checked', e.target.value);
-//       this.setState({ value: e.target.value });
-//     };
-//
-//     render() {
-//         const radioStyle = {
-//           display: 'block',
-//           height: '30px',
-//           lineHeight: '30px'
-//         };
-//
-//         return(
-//             <div>
-//                 <span style={radioStyle}>¿Qué es un atributo?</span>
-//                 <Radio.Group onChange={this.onChange}>
-//                     <Radio value={1} style={radioStyle}>Son las características de un objeto</Radio>
-//                     <Radio value={2} style={radioStyle}>Son las cosas que puede hacer un objeto</Radio>
-//                     <Radio value={3} style={radioStyle}>Es una forma de programar</Radio>
-//                     <Radio value={4} style={radioStyle}>No lo se</Radio>
-//                 </Radio.Group>
-//             </div>
-//         );
-//     }
-// }
-//
-// export default Game1AttributeTest;
+import {Table, Divider, Tag, Input, Button, notification} from 'antd';
 
 
 class AttributeTest extends Component {
     state = {
         rotate: 90,
-        rotateY: 90
+        rotateY: 90,
+        qualification: 0
     };
 
     transformation(index, event) {
@@ -79,24 +45,52 @@ class AttributeTest extends Component {
         },
         {
             key: 'rotateY',
-            attribute: 'rotación en Y',
+            attribute: 'rotación en eje Y',
             // values: '0'
             values: this.state.rotateY
         }
     ];
 
+    checkAnswer = () => {
+        console.log('click!!');
+        console.log('checkAnswer', this.state);
+        if (this.state.rotate !== 90 || this.state.rotateY !== 90 ){
+            console.log('Es check', this.state);
+            if (this.state.rotate === "0" && this.state.rotateY === "9"){
+                this.setState({qualification: 100});
+                notification.open({
+                    message: 'Lo lograste !!!',
+                    description: 'modificar los valores, modifica el objeto'
+                })
+
+            }else{
+                notification.open({
+                    message: 'Casi lo tienes !!!',
+                    description: 'asegurate de colocar bien la imagen'
+                })
+            }
+
+        }else{
+            notification.open({
+                message: 'Intentalo !!!',
+                description: 'cambia los valores de los atributos'
+            })
+        }
+
+    };
+
 
     render() {
-        console.log('1111111111');
+        console.log('1111111111', this.props);
+        console.log('1111111111', this.state);
         return(
             <div>
                 <div style={{width: '100%' }}>
-                    <h4>Modifica los atributos y descubre que objeto es... </h4>
+                    <h4>Modifica los atributos y descubre que objeto es...  </h4>
                 </div>
             <div style={{display: "inline-flex"}}>
 
                 <div style={{ margin: '1%'}}>
-                    {/*<img src={car} style={{width: 300, height:300, transform: 'rotate(90deg)' }}/>*/}
                     <img src={bird}
                          style={{
                              width: 300, height:300,
@@ -108,6 +102,10 @@ class AttributeTest extends Component {
                 </div>
 
             </div>
+                <Button
+                    // disabled={this.state.buttonDisable}
+                    onClick={()=> {this.checkAnswer()}}>Revisar Ejercicio</Button>
+
             </div>
         );
     }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import toyCar from '../../assets/ToyCarRed.png';
 import carTransformed from '../../assets/ToyCarRedTransformed.png';
-import {Button, Table, notification} from "antd";
+import {Button, Table, notification, Radio} from "antd";
 // import {Menu, Dropdown, Button, Icon, message, Table} from "antd";
 // import ModalFinishedGame from "./ModalFinishedGame";
 import {GlassMagnifier} from "react-image-magnifiers";
@@ -10,102 +10,69 @@ import {GlassMagnifier} from "react-image-magnifiers";
 class AttributeExercise extends Component {
     // constructor
     state= {
-        buttonDisable: true,
-        rowKeys: [],
+        // buttonDisable: true,
+        // rowKeys: [],
+        value: 0,
+        sizeRadioButton: 'large',
+        answer: 4,
+        qualification: 0
     };
 
-    render(props) {
-        console.log('props de GAmq1', props);
+    onChange = e => {
+        this.setState({value: e.target.value});
+        // this.changeButtonState(e);
+    };
 
-        const columns = [
-            {
-                title: 'Attributos',
-                dataIndex: 'attribute',
-            },
-            {
-                title: 'Valor',
-                dataIndex: 'value',
-            }
-        ];
+    // changeButtonState = (e) => {
+    //     e.target.value !== 0 ? this.setState({buttonDisable: false}) : this.setState({buttonDisable: true});
+    // };
 
-        const data = [
-            {
-                key:'1',
-                attribute: 'numero_de_llantas',
-                value: '4'
-            },
-            {
-                key:'2',
-                attribute: 'color',
-                value: 'rojo'
-            },
-            {
-                key:'3',
-                attribute: 'numero_de_puertas',
-                value: '2'
-            },
-            {
-                key:'4',
-                attribute: 'tiene_alas',
-                value: 'true'
-            }
-        ];
+    checkAnswer= ()=> {
 
-        const rowSelection = {
-            onChange: (selectedRowKeys, selectedRows) => {
-                console.log('selectRowKeys:', selectedRowKeys, 'selectedRows:', selectedRows);
-                this.setState({rowKeys: selectedRowKeys});
+        console.log('ESTATE check', this.state);
 
-                changeButtonState(selectedRowKeys);
-            },
-            // getCheckboxProps: record => ({
-            //     disable: record.name === 'Disable User',
-            //     name: record.name,
-            // }),
-        };
+        if(this.state.answer === this.state.value) {
+            this.setState({qualification: 100});
+            notification.open({
+                message: 'genial !!!',
+                description: 'lo has logrado'
+            })
+        }else {
+            notification.open({
+                message: 'hoooo nooo!!!',
+                description: 'los atributos de esta respuesta no describen a este objeto. Intentalo de nuevo...'
+            })
+        }
+    };
 
-        const changeButtonState = (rowKeys)=> {
-            rowKeys.length > 0 ? this.setState({buttonDisable: false}) : this.setState({buttonDisable: true});
-        };
+    render() {
 
-        const checkAnswer= ()=> {
-            let grade = true;
-
-            const result = this.state.rowKeys.map(rk => {
-                if (rk === "4") {grade= false}
-                return console.log('grade', grade);
-            });
-
-
-            console.log('result', result);
-
-            if(grade === true) {
-                notification.open({
-                    message: 'genial !!!',
-                    description: 'lo has logrado'
-                })
-            }else {
-                notification.open({
-                    message: 'hoooo nooo!!!',
-                    description: 'los autos aun no vuelan'
-                })
-            }
-        };
-
+        console.log('thiESTATE', this.state);
+        console.log('thiPROPS', this.props);
 
         return(
             <div>
                 <h4>Selecciona los atributos del objeto. Fijate bien!!! 0.0 </h4>
-
-                {/*<img src={carTransformed} style={{width: 300, height: 200}}/>*/}
 
                 <GlassMagnifier
                     imageSrc={carTransformed}
                     largeImageSrc={toyCar}
                     style={{ width:500, height:300, display: 'inline-block' }}/>
 
-                <Table rowSelection={rowSelection} columns={columns} dataSource={data}/>
-                <Button disabled={this.state.buttonDisable} onClick={()=> {checkAnswer()}}>Revisar Ejercicio</Button>
+
+                <div style={{ marginTop: 16 }}>
+                    <Radio.Group onChange={this.onChange} value={this.state.value} size={this.state.sizeRadioButton}>
+                        <Radio.Button value={1}>numero_de_llantas: 4 , color:rojo, tiene_ventanas: false</Radio.Button><br/>
+                        <Radio.Button value={2}>numero_de_patas: 4 , color:verde, tiene_ventanas: false</Radio.Button><br/>
+                        <Radio.Button value={3}>numero_de_llantas: 0 , color:rojo, tiene_ventanas: true</Radio.Button><br/>
+                        <Radio.Button value={4}>numero_de_llantas: 4 , color:rojo, tiene_ventanas: true</Radio.Button><br/>
+                    </Radio.Group>
+                </div>
+                <div>
+                <Button
+                    // disabled={this.state.buttonDisable}
+                    onClick={()=> {this.checkAnswer()}}>Revisar Ejercicio</Button>
+                </div>
             </div>
         );
     }
