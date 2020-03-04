@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Steps, Button, message} from "antd";
-import definition from '../../assets/game1Attributes.png';
-import example from '../../assets/game1AttributesExample.png';
+import definition from '../../assets/attributes/AttributesDefinitionAndExample.png';
+// import example from '../../assets/game1AttributesExample.png';
 
 // import AttributeExerciseBlockly from './AttributeExerciseBlockly';
 import AttributeExercise from "./AttributeExercise";
@@ -19,11 +19,7 @@ const {Step} = Steps;
 const steps=[
     {
         title: 'Introducción',
-        content: <img alt='attribute definition' src={definition}/> ,
-    },
-    {
-        title: 'Ejemplo',
-        content: <img src={example}/>,
+        content: <img alt='attribute definition and example' src={definition}/> ,
     },
     {
         title: 'Ejercicio',
@@ -69,7 +65,6 @@ class Attribute extends Component {
 
         return(
             <div style={{ 'padding': 20 }}>
-                {/*Jueguito 1*/}
                 <Steps current={current}>
                     {steps.map(item => ( <Step
                             key={item.title}

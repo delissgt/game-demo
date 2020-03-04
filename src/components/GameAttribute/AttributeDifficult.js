@@ -1,17 +1,17 @@
 import React, {Component} from "react";
-import {Radio, Card, Button} from "antd";
+import {Radio, Card, Button, notification} from "antd";
 
-import AttributeJava1 from '../../images/attributes/AttributesJava1.png';
-import AttributeJava2 from '../../images/attributes/AttributesJava2.png';
-import AttributeJava3 from '../../images/attributes/AttributesJava3.png';
+import AttributeJava1 from '../../assets/attributes/AttributesJava1.png';
+import AttributeJava2 from '../../assets/attributes/AttributesJava2.png';
+import AttributeJava3 from '../../assets/attributes/AttributesJava3.png';
 
-import AttributeJavaScript1 from '../../images/attributes/AttributesJs1.png';
-import AttributeJavaScript2 from '../../images/attributes/AttributesJs2.png';
-import AttributeJavaScript3 from '../../images/attributes/AttributesJs3.png';
+import AttributeJavaScript1 from '../../assets/attributes/AttributesJs1.png';
+import AttributeJavaScript2 from '../../assets/attributes/AttributesJs2.png';
+import AttributeJavaScript3 from '../../assets/attributes/AttributesJs3.png';
 
-import AttributePython1 from '../../images/attributes/AttributesPython1.png';
-import AttributePython2 from '../../images/attributes/AttributesPython2.png';
-import AttributePython3 from '../../images/attributes/AttributesPython3.png';
+import AttributePython1 from '../../assets/attributes/AttributesPython1.png';
+import AttributePython2 from '../../assets/attributes/AttributesPython2.png';
+import AttributePython3 from '../../assets/attributes/AttributesPython3.png';
 
 class AttributeDifficult extends Component {
     state = {
@@ -42,13 +42,29 @@ class AttributeDifficult extends Component {
     };
 
     checkAnswer = () => {
-      this.state.value === 3 ? this.setState({qualification: 100}): console.log('nop');
+      if (this.state.value === 3){
+          this.setState({qualification: 100});
+          notification.success({
+              message: 'GENIAL',
+              description: 'reto superado!'
+          })
+      }else{
+      notification.error({
+          message: 'ho nooo!, Intentalo de nuevo...',
+          description: 'este codigo tiene un error'
+      })
+      }
+
     };
 
     render() {
-        console.log('che', this.state);
+        // console.log('che', this.state);
         return (
             <div>
+                <div>
+                <h2>Aquí hay solo una clase bien definida, elige la correcta.</h2>
+                 <h4>Nota: Puedes elegir el lenguaje que estan aprendiendo</h4>
+                </div>
                 <div>
                     <Radio.Group defaultValue="a" buttonStyle="solid" onChange={this.onChangeCode}>
                         <Radio.Button value="a">Java</Radio.Button>
@@ -68,7 +84,7 @@ class AttributeDifficult extends Component {
                 </Radio>
             </Radio.Group>
                 <div style={{ paddingTop: "2%" }} >
-                    <Button
+                    <Button type="primary" ghost
                         onClick={()=> {this.checkAnswer()}}>Revisar Ejercicio
                     </Button>
                 </div>

@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
-import {Form, Button, Input} from 'antd';
-import {Link} from 'react-router-dom';
+import {Form, Button, Input, Row} from 'antd';
+import {Route, Link} from 'react-router-dom';
+import Games from "./Games";
 
 class Login extends Component {
-    state= {
-        pageGame: 'something'
+    state = {
+      display: 'block'
     };
 
     myFunctionClickOk = () => {
-        this.setState({pageGame: '/pagigna/juego/1'});
+        console.log('click boton Login');
     };
 
     render() {
         return(
             <div>
+            <Row style={{ display: this.state.display }}>
                 <Form layout="inline">
                     <Form.Item>
                         <Input placeholder="username"/>
@@ -30,6 +32,8 @@ class Login extends Component {
                         </Link>
                     </Form.Item>
                 </Form>
+            </Row>
+                <Route path="/games" exact component={Games} />
             </div>
         );
     }

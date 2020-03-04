@@ -2,8 +2,8 @@ import * as Blockly from 'blockly/core';
 // import BlocklyReactField from '../fields/BlocklyReactField';
 
 // import begood from  '../../assets/begood.png';
-import bird from '../../assets/bird.png';
-import cat from '../../assets/cat.png';
+import bird from '../../assets/attributes/bird.png';
+import cat from '../../assets/attributes/cat.png';
 
 // Class Animal Bird
 Blockly.Blocks['bird_block'] = {

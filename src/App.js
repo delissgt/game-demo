@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import './App.css';
 import {BrowserRouter, Route } from 'react-router-dom';
-import Login from './containers/Login';
-import Games from './containers/Games';
-import Attribute from "./components/GameAttribute/Attribute";
+import Login from '../src/containers/Login';
+
+import Games from '../src/containers/Games';
+import Attribute from "../src/components/GameAttribute/Attribute";
+import Settings from "../src/containers/Settings";
 
 class App extends Component {
-
     render() {
         return (
             <BrowserRouter>
             <div className="App">
-                {/*Hola Deliss*/}
-                <Route exact path="/" component={Login}/>
-                <Route exact path='/games' component={Games}/>
+                {/*<Route  path="/"  exact render={() => <Login/>}/>*/}
+                <Route path="/login" exact component={Login}  />
+                <Route path='/games' exact component={Games}/>
                 <Route exact path="/games/attributes" component={Attribute} />
+                <Route exact path="/settings" component={Settings} />
             </div>
             </BrowserRouter>
         );
@@ -22,15 +24,4 @@ class App extends Component {
 }
 
 export default App;
-
-// function App(props) {
-//     console.log('App props', props);
-//     return (
-//         <div className="App">
-//             Hola deliss me
-//             <Login/>
-//             <Juegos/>
-//         </div>
-//     );
-// }
 

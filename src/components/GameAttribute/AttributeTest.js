@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import bird from '../../assets/bird.png';
+import bird from '../../assets/attributes/bird.png';
 import {Table, Input, Button, notification} from 'antd';
 
 
@@ -58,22 +58,22 @@ class AttributeTest extends Component {
             console.log('Es check', this.state);
             if (this.state.rotate === "0" && this.state.rotateY === "9"){
                 this.setState({qualification: 100});
-                notification.open({
-                    message: 'Lo lograste !!!',
-                    description: 'modificar los valores, modifica el objeto'
+                notification.success({
+                    message: 'GENIAL !!!',
+                    description: 'lo has logrado'
                 })
 
             }else{
-                notification.open({
-                    message: 'Casi lo tienes !!!',
+                notification.info({
+                    message: 'Casi lo tienes',
                     description: 'asegurate de colocar bien la imagen'
                 })
             }
 
         }else{
-            notification.open({
-                message: 'Intentalo !!!',
-                description: 'cambia los valores de los atributos'
+            notification.warn({
+                message: 'Intentalo...',
+                description: 'si modificas los valores, se modifica el objeto'
             })
         }
 
@@ -86,7 +86,7 @@ class AttributeTest extends Component {
         return(
             <div>
                 <div style={{width: '100%' }}>
-                    <h4>Modifica los atributos y descubre que objeto es...  </h4>
+                    <h2>Modifica los atributos y descubre que objeto es  </h2>
                 </div>
             <div style={{display: "inline-flex"}}>
 
@@ -102,10 +102,11 @@ class AttributeTest extends Component {
                 </div>
 
             </div>
-                <Button
+                <div style={{ paddingTop: "2%" }}>
+                <Button type="primary" ghost
                     // disabled={this.state.buttonDisable}
                     onClick={()=> {this.checkAnswer()}}>Revisar Ejercicio</Button>
-
+                </div>
             </div>
         );
     }

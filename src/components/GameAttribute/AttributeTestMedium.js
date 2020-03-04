@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Transfer} from "antd";
-
+import {Button, Transfer, notification} from "antd";
 
 
 const mockDataCustom = [
@@ -36,22 +35,14 @@ class AttributeTestMedium extends Component{
 
     handleChange = (nextTargetKeys, direction, moveKeys) => {
         this.setState({ targetKeys: nextTargetKeys });
-
-        console.log('targetKeys: ', nextTargetKeys);
-        console.log('direction: ', direction);
-        console.log('moveKeys: ', moveKeys);
     };
 
     handleSelectChange = (sourceSelectedKeys, targetSelectedKeys) => {
         this.setState({ selectedKeys: [...sourceSelectedKeys, ...targetSelectedKeys] });
-
-        console.log('sourceSelectedKeys: ', sourceSelectedKeys);
-        console.log('targetSelectedKeys: ', targetSelectedKeys);
     };
 
     handleScroll = (direction, e) => {
-        console.log('direction:', direction);
-        console.log('target:', e.target);
+        console.log('direction:', direction, 'target', e.target);
     };
 
 
@@ -114,15 +105,10 @@ class AttributeTestMedium extends Component{
 
     checkAnswer = () => {
         const badAnswers=[2, 4, 5, 7, 8];
-        console.log('check check');
-        console.log('check Estado', this.state.targetKeys);
-        console.log('check EstadoTYPEEE', typeof (this.state.targetKeys));
         const inputAnswers = this.state.targetKeys;
         let qualification = 0;
         // eslint-disable-next-line array-callback-return
         inputAnswers.map(a => {
-            console.log(a);
-            console.log(a);
             // eslint-disable-next-line no-unused-vars,array-callback-return
             const result = badAnswers.filter(ba =>  {
                 // eslint-disable-next-line no-unused-expressions
@@ -133,14 +119,26 @@ class AttributeTestMedium extends Component{
         this.setState({qualification});
 
         if (inputAnswers.length < 5){
-            console.log('parece que faltan atributos')
+            notification.warn({
+                message: 'Faltan atributos',
+                description: 'Intentalo de nuevo',
+            })
         } else if (inputAnswers.length > 5) {
-            console.log('pueden hay halla algunos atributos demás');
+            notification.error({
+                message: 'ho noo! ',
+                description: 'Hay atributos que no describen al objeto',
+            })
         }else{
             if(qualification < 100){
-                console.log('estas seguro que son los atributos correctos??');
+                notification.warn({
+                    message: 'Estas seguro???',
+                    description: 'Hay atributos que no describen al objeto',
+                })
             }else{
-                console.log('woooo lo logre');
+                notification.success({
+                    message: 'GENIAL !!!',
+                    description: 'reto superado!',
+                })
             }
         }
 
@@ -151,12 +149,13 @@ class AttributeTestMedium extends Component{
 
         return(
             <div>
-                instrucciones aquí
+                <h2>Mueve los atributos que describan a la clase</h2>
                 <Transfer
                     showSelectAll={false}
                     listStyle={{ display: 'inline-table', textAlign: 'left' }}
                     dataSource={mockData}
                     titles={['Atributos', 'Clase Gato']}
+                    operations={['Agregar', 'Quitar']}
                     targetKeys={targetKeys}
                     selectedKeys={selectedKeys}
                     onChange={this.handleChange}
@@ -165,7 +164,7 @@ class AttributeTestMedium extends Component{
                     render={item => item.title}
                 />
                 <div style={{ paddingTop: "2%" }} >
-                    <Button
+                    <Button type="primary" ghost
                         onClick={()=> {this.checkAnswer()}}>Revisar Ejercicio
                     </Button>
                 </div>

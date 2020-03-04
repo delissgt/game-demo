@@ -1,0 +1,18 @@
+.button-check-answer {
+    padding: 2%;
+}
+
+.ant-radio-wrapper {
+    padding-top: 5%;
+}
+
+.ant-transfer-list-body {
+    font-size: 17px;
+}
+
+.ant-transfer-list-header-selected {
+    color: #00000000
+}
+.ant-transfer-list-header-title {
+    color: #000000d9;
+}
