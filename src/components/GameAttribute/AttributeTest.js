@@ -12,9 +12,6 @@ class AttributeTest extends Component {
     };
 
     transformation(index, event) {
-        console.log('transformation');
-        console.log('index:', index.key);
-        console.log('vaevevev', event.target.value);
         this.setState({ [index.key] : event.target.value });
     }
 
@@ -39,13 +36,13 @@ class AttributeTest extends Component {
     data = [
         {
             key: 'rotate',
-            attribute: 'rotación',
+            attribute: 'rotación = ',
             // values: '0'
             values: this.state.rotate
         },
         {
             key: 'rotateY',
-            attribute: 'rotación en eje Y',
+            attribute: 'rotación_eje_Y = ',
             // values: '0'
             values: this.state.rotateY
         }

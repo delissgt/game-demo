@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {Button, Transfer, notification} from "antd";
-
+import classes from './style.css';
 
 const mockDataCustom = [
-    {key: 1, title: "Color_de_plumaje: rojo", chosen: false},
-    {key: 2, title: "Color_de_pelaje: naranja/amarillo", chosen: false},
-    {key: 3, title: "Numero_de_llantas: 4", chosen: false},
-    {key: 4, title: "especie: animal", chosen: false},
-    {key: 5, title: "familia: felino", chosen: false},
-    {key: 6, title: "modelo: BMW-i8", chosen: false},
-    {key: 7, title: "vertebrado: true", chosen: false},
-    {key: 8, title: "Numero_de_patas: 4", chosen: false},
-    {key: 9, title: "Numero_Placa: AB-2W-OO", chosen: false},
+    {key: 1, title: "color_plumaje = \"rojo\"", chosen: false},
+    {key: 2, title: "color_pelaje = \"naranja\"", chosen: false},
+    {key: 3, title: "numero_llantas = 4", chosen: false},
+    {key: 4, title: "especie = \"animal\"", chosen: false},
+    {key: 5, title: "familia = \"felino\"", chosen: false},
+    {key: 6, title: "modelo = \"BMW-i8\"", chosen: false},
+    {key: 7, title: "vertebrado = true", chosen: false},
+    {key: 8, title: "numero_patas = 4", chosen: false},
+    {key: 9, title: "numero_Placa = \"AB-2W-OO\"", chosen: false},
 ];
 
 const mockData = [];
@@ -54,15 +54,15 @@ class AttributeTestMedium extends Component{
         const targetKeys = [];
         const mockData = [];
         const dataCustom = [
-            {key: 1, title: "Color_de_plumaje: rojo", chosen: false},
-            {key: 2, title: "Color_de_pelaje: naranja/amarillo", chosen: false},
-            {key: 3, title: "Numero_de_llantas: 4", chosen: false},
-            {key: 4, title: "especie: animal", chosen: false},
-            {key: 5, title: "familia: felino", chosen: false},
-            {key: 6, title: "modelo: BMW-i8", chosen: false},
-            {key: 7, title: "vertebrado: true", chosen: false},
-            {key: 8, title: "Numero_de_patas: 4", chosen: false},
-            {key: 9, title: "Numero_Placa: AB-2W-OO", chosen: false}
+            {key: 1, title: "color_plumaje = \"rojo\"", chosen: false},
+            {key: 2, title: "color_pelaje = \"naranja\"", chosen: false},
+            {key: 3, title: "numero_llantas = 4", chosen: false},
+            {key: 4, title: "especie = \"animal\"", chosen: false},
+            {key: 5, title: "familia = \"felino\"", chosen: false},
+            {key: 6, title: "modelo = \"BMW-i8\"", chosen: false},
+            {key: 7, title: "vertebrado = true", chosen: false},
+            {key: 8, title: "numero_patas = 4", chosen: false},
+            {key: 9, title: "numero_Placa = \"AB-2W-OO\"", chosen: false}
         ];
 
         for (let i = 0; i < 9; i++) {
@@ -151,6 +151,7 @@ class AttributeTestMedium extends Component{
             <div>
                 <h2>Mueve los atributos que describan a la clase</h2>
                 <Transfer
+                    className={classes.antTransferListHeaderSelected}
                     showSelectAll={false}
                     listStyle={{ display: 'inline-table', textAlign: 'left' }}
                     dataSource={mockData}
@@ -171,7 +172,6 @@ class AttributeTestMedium extends Component{
             </div>
         )
     }
-
 
 }
 

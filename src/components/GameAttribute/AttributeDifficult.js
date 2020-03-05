@@ -63,7 +63,7 @@ class AttributeDifficult extends Component {
             <div>
                 <div>
                 <h2>Aquí hay solo una clase bien definida, elige la correcta.</h2>
-                 <h4>Nota: Puedes elegir el lenguaje que estan aprendiendo</h4>
+                 <h4>Nota: Puedes elegir el lenguaje que estas aprendiendo</h4>
                 </div>
                 <div>
                     <Radio.Group defaultValue="a" buttonStyle="solid" onChange={this.onChangeCode}>
