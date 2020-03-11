@@ -1,10 +1,38 @@
 import React from 'react';
 import {Modal, Button, Form, Input, InputNumber} from "antd";
 
-const registrationForm = (props) => {
+
+const formItemLayout = {
+    labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 },
+    },
+    wrapperCol : {
+        xs: { span: 24 },
+        sm: { span: 16 },
+    },
+};
+
+const tailFormItemLayout = {
+    wrapperCol: {
+        xs: {
+            span: 24,
+            offset: 0,
+        },
+        sm: {
+            span: 16,
+            offset: 8,
+        },
+    },
+};
+
+
+
+const signUpForm = (props) => {
 
     const onFinish = values => {
-      console.log('registerValues', values)
+        props.handleOk(values);
+        console.log('registerValues', values);
     };
 
     return (
@@ -15,18 +43,15 @@ const registrationForm = (props) => {
            <Modal
                visible={props.visible}
                title="Title"
-               onOk={props.handleOk}
                onCancel={props.handleCancel}
                footer={[
                    <Button key="back" onClick={props.handleCancel}>
                        Cancelar
                    </Button>,
-                   <Button type="primary" key="submit" onClick={props.handleOk} loading={props.loading}>
-                       Registrarse
-                   </Button>,
                ]}
            >
                <Form
+                   { ...formItemLayout }
                    name="register"
                    onFinish={onFinish}
                >
@@ -40,7 +65,7 @@ const registrationForm = (props) => {
                            }
                        ]}
                    >
-                       <Input placeholder="Alias" />
+                       <Input placeholder="Alias" autoFocus={true} />
                    </Form.Item>
 
                    <Form.Item
@@ -50,7 +75,6 @@ const registrationForm = (props) => {
                            {
                                required: true,
                                message: 'Este campo es requerido',
-                               whiteSpace: false,
                            },
                            {
                                type: 'number',
@@ -80,13 +104,14 @@ const registrationForm = (props) => {
                                required: true,
                                message: 'Ingresa tu contraseña!',
                            },
-                           // TODO validate password finish
                            () => ({
                                validator(rule, value) {
-                                   if (value.length >= 8){
-                                       return Promise.resolve();
+                                   if (typeof(value) !== "undefined") {
+                                       if (value.length >= 8){
+                                           return Promise.resolve();
+                                       }
                                    }
-                                   return Promise.reject('La contreseña debe de ser minimo 8 caracteres');
+                                   return Promise.reject('La contreseña debe ser de minimo 8 caracteres');
                                },
                            }),
                        ]}
@@ -117,6 +142,16 @@ const registrationForm = (props) => {
                    >
                         <Input.Password/>
                    </Form.Item>
+
+                   <Form.Item { ...tailFormItemLayout } >
+                       <Button
+                           type="primary"
+                           htmlType="submit"
+                           key="submit"
+                       >
+                           Registrarme
+                       </Button>
+                   </Form.Item>
                </Form>
 
            </Modal>
@@ -124,4 +159,4 @@ const registrationForm = (props) => {
     )
 };
 
-export default registrationForm;
+export default signUpForm;

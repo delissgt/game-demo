@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import Games from "./Games";
 import LoginForm from '../components/LoginForm/LoginForm';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm'
+import SignUpForm from '../components/SignUpForm/SignUpForm'
 class Login extends Component {
     state = {
         visible: false,
@@ -14,11 +14,13 @@ class Login extends Component {
       this.setState({visible: true});
     };
 
-    handleOk = () => {
-      this.setState({ loading: true });
-        setTimeout(()=>{
-           this.setState({loading: false, visible: false});
-        }, 3000);
+    handleOk = (values) => {
+        console.log('VALUESok', values);
+        this.setState({visible: false});
+      // this.setState({ loading: true });
+        // setTimeout(()=>{
+        //    this.setState({loading: false, visible: false});
+        // }, 3000);
         console.log('handle OK ')
 
     };
@@ -34,7 +36,7 @@ class Login extends Component {
                 <LoginForm>
                     <Route path="/games" exact component={Games} />
                 </LoginForm>
-                <RegistrationForm
+                <SignUpForm
                     visible={this.state.visible}
                     showModal={this.showModal}
                     handleOk={this.handleOk}
