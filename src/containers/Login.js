@@ -1,39 +1,47 @@
 import React, {Component} from 'react';
-import {Form, Button, Input, Row} from 'antd';
-import {Route, Link} from 'react-router-dom';
+// import {Form, Button, Input, Row} from 'antd';
+import {Route} from 'react-router-dom';
 import Games from "./Games";
-
+import LoginForm from '../components/LoginForm/LoginForm';
+import RegistrationForm from '../components/RegistrationForm/RegistrationForm'
 class Login extends Component {
     state = {
-      display: 'block'
+        visible: false,
+        loading: false,
     };
 
-    myFunctionClickOk = () => {
-        console.log('click boton Login');
+    showModal = () => {
+      this.setState({visible: true});
     };
+
+    handleOk = () => {
+      this.setState({ loading: true });
+        setTimeout(()=>{
+           this.setState({loading: false, visible: false});
+        }, 3000);
+        console.log('handle OK ')
+
+    };
+
+    handleCancel = () => {
+        this.setState({visible: false});
+    };
+
 
     render() {
         return(
             <div>
-            <Row style={{ display: this.state.display }}>
-                <Form layout="inline">
-                    <Form.Item>
-                        <Input placeholder="username"/>
-                    </Form.Item>
-                    <Form.Item>
-                        <Input type="password" placeholder="contraseña"/>
-                    </Form.Item>
-                    <Form.Item>
-                        <Link to={'/games'}>
-                        <Button
-                            type="primary"
-                            onClick={this.myFunctionClickOk}
-                        >Login</Button>
-                        </Link>
-                    </Form.Item>
-                </Form>
-            </Row>
-                <Route path="/games" exact component={Games} />
+                <LoginForm>
+                    <Route path="/games" exact component={Games} />
+                </LoginForm>
+                <RegistrationForm
+                    visible={this.state.visible}
+                    showModal={this.showModal}
+                    handleOk={this.handleOk}
+                    handleCancel={this.handleCancel}
+                    loading={this.state.loading}
+                />
+                {/*<Route path="/games" exact component={Games} />*/}
             </div>
         );
     }
