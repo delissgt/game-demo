@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Layout, Menu, Icon} from "antd";
+import {Layout, Menu} from "antd";
+import { SettingOutlined, PlayCircleOutlined, LogoutOutlined } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
 const {Sider} = Layout;
 
@@ -17,7 +18,6 @@ class SideNavigation extends Component {
             console.log('click event', e);
             this.setState({selectedKey: e.key });
             this.setState({selectedKey: e.key });
-            console.log('______');
         };
 
         return(
@@ -37,21 +37,21 @@ class SideNavigation extends Component {
 
                     <Menu.Item key="1">
                         <Link to={"/games"}>
-                            <Icon type="play-circle" theme="filled" />
+                            <PlayCircleOutlined />
                             <span className="nav-text">Juego</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="2">
                         <Link to={'/settings'}>
-                            <Icon type="setting" theme="filled" />
+                            <SettingOutlined />
                             <span className="nav-text">Configuración</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="3">
                         <Link to={"/login"}>
-                            <Icon type="logout" />
+                            <LogoutOutlined />
                             <span className="nav-text">Salir</span>
                         </Link>
                     </Menu.Item>

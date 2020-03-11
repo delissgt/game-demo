@@ -1,5 +1,6 @@
 import React from 'react';
-import {Card as CardAntd, Icon, Rate, Col} from "antd";
+import {Card as CardAntd, Rate, Col} from "antd";
+import { TrophyFilled } from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import classes from './Card.css';
 
@@ -15,7 +16,7 @@ const card = (props) => {
                         title={game.title}
                         bordered={false}
                         actions={[
-                            <Rate character={<Icon type="trophy" theme="filled"/>}/>,
+                            <Rate character={<TrophyFilled />}/>,
                         ]}
                     >
                         <p>{game.description}</p>
