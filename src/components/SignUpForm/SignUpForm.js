@@ -56,7 +56,7 @@ const signUpForm = (props) => {
                    onFinish={onFinish}
                >
                    <Form.Item
-                       name="nickname"
+                       name="name"
                        label="Nombre de usuario"
                        rules={[
                            {
@@ -65,7 +65,7 @@ const signUpForm = (props) => {
                            }
                        ]}
                    >
-                       <Input placeholder="Alias" autoFocus={true} />
+                       <Input autoFocus={true} />
                    </Form.Item>
 
                    <Form.Item

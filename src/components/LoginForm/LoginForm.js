@@ -62,8 +62,7 @@ const loginForm = () => {
                 >
                     Iniciar sesion
                 </Button>
-                {/*Or*/}
-                {/*<a href="">register now!</a>*/}
+
             </Form.Item>
         </Form>
         </Col>

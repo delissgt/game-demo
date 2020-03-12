@@ -4,6 +4,9 @@ import {Route} from 'react-router-dom';
 import Games from "./Games";
 import LoginForm from '../components/LoginForm/LoginForm';
 import SignUpForm from '../components/SignUpForm/SignUpForm'
+
+import { EndPoints }  from "../utils/HttpRequests";
+
 class Login extends Component {
     state = {
         visible: false,
@@ -15,7 +18,9 @@ class Login extends Component {
     };
 
     handleOk = (values) => {
-        console.log('VALUESok', values);
+
+        EndPoints(values);
+
         this.setState({visible: false});
       // this.setState({ loading: true });
         // setTimeout(()=>{
