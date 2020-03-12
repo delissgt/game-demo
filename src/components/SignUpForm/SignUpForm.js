@@ -77,7 +77,7 @@ const signUpForm = (props) => {
                                message: 'Este campo es requerido',
                            },
                            {
-                               type: 'number',
+                               pattern: /^[0-9]+$/,
                                message: 'No es una matricula valida',
                            },
                            ()=> ({
@@ -93,7 +93,7 @@ const signUpForm = (props) => {
                            }),
                        ]}
                    >
-                       <InputNumber/>
+                       <Input/>
                    </Form.Item>
 
                    <Form.Item
