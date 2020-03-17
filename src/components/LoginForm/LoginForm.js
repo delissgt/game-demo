@@ -1,18 +1,22 @@
 import React from 'react';
 import {Form, Input, Button, Col} from "antd";
 import {UserOutlined, LockOutlined} from "@ant-design/icons";
+import {Link} from 'react-router-dom';
 import './loginForm.css';
 import {Login} from "../../utils/HttpRequests";
 
-const loginForm = () => {
+const loginForm = (props) => {
+    console.log('PROPSSSSS', props.signUp);
 
     const onFinish = values => {
-        Login(values);
+        Login(values, props.signUp);
     };
 
     const onFinishFailed = errorInfo => {
       console.log('errorInfo', errorInfo);
     };
+
+
 
     return (
         <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }}  style={{ paddingTop: '50px' }}>
@@ -81,6 +85,7 @@ const loginForm = () => {
             </Form.Item>
 
             <Form.Item>
+                {/*<Link to="/games">*/}
                 <Button
                     type="primary"
                     htmlType="submit"
@@ -88,7 +93,7 @@ const loginForm = () => {
                 >
                     Iniciar sesion
                 </Button>
-
+                {/*</Link>*/}
             </Form.Item>
         </Form>
         </Col>
