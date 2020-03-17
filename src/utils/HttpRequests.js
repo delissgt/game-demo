@@ -15,7 +15,7 @@ export const EndPoints = (values) => {
         role: 'student'
     };
 
-  axios.post(backUrl+'/student', data)
+  axios.post(backUrl+'/students', data)
       .then((response) => {
           console.log('response back', response);
       })
