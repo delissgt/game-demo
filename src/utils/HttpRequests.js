@@ -7,7 +7,7 @@ import {notification} from "antd";
 const backUrl = "http://localhost:5000";
 
 
-export const EndPoints = (values) => {
+export const SignUp = (values) => {
     const data = {
         name: values["name"],
         enrollment : values['enrollment'],

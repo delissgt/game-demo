@@ -5,7 +5,7 @@ import Games from "./Games";
 import LoginForm from '../components/LoginForm/LoginForm';
 import SignUpForm from '../components/SignUpForm/SignUpForm'
 
-import { EndPoints }  from "../utils/HttpRequests";
+import { SignUp }  from "../utils/HttpRequests";
 import {notification} from "antd";
 
 class Login extends Component {
@@ -21,7 +21,7 @@ class Login extends Component {
 
     handleOk = (values) => {
 
-        EndPoints(values);
+        SignUp(values);
 
         this.setState({visible: false});
       // this.setState({ loading: true });
