@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-// import {Form, Button, Input, Row} from 'antd';
 import {Redirect} from 'react-router-dom';
-import Games from "./Games";
 import LoginForm from '../components/LoginForm/LoginForm';
 import SignUpForm from '../components/SignUpForm/SignUpForm'
 
@@ -44,19 +42,15 @@ class Login extends Component {
         if (this.state.signUp) {
             console.log('se cambioSignUp', this.state);
             notification['success']({
-               message: 'Logueado',
-               description: 'se ha iniciado sesion wiii!!',
+               message: 'Hola :)',
+               description: 'has iniciado sesion',
             });
             return <Redirect to = {{pathname: "/games"}}/>;
         }
 
-
-
         return(
             <div>
-                <LoginForm signUp={this.isSignedUp}>
-                    {/*<Route path="/games" exact component={Games} />*/}
-                </LoginForm>
+                <LoginForm signUp={this.isSignedUp} />
                 <SignUpForm
                     visible={this.state.visible}
                     showModal={this.showModal}
@@ -64,7 +58,7 @@ class Login extends Component {
                     handleCancel={this.handleCancel}
                     loading={this.state.loading}
                 />
-                {/*<Route path="/games" exact component={Games} />*/}
+
             </div>
         );
     }

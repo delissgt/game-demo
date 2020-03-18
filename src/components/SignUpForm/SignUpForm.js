@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button, Form, Input, InputNumber} from "antd";
+import {Modal, Button, Form, Input} from "antd";
 
 
 const formItemLayout = {
