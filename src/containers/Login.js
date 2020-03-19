@@ -45,7 +45,7 @@ class Login extends Component {
                message: 'Hola :)',
                description: 'has iniciado sesion',
             });
-            return <Redirect to = {{pathname: "/games"}}/>;
+            return (<Redirect to = {{pathname: "/games"}}/>);
         }
 
         return(
