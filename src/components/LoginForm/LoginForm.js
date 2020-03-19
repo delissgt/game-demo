@@ -7,7 +7,7 @@ import {Login} from "../../utils/HttpRequests";
 const loginForm = (props) => {
 
     const onFinish = values => {
-        Login(values, props.signUp);
+        Login(values, props.isLogged);
     };
 
     const onFinishFailed = errorInfo => {

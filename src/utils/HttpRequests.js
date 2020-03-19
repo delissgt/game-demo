@@ -51,7 +51,7 @@ export const SignUp = (values) => {
 };
 
 
-export const Login = (values, signUp) => {
+export const Login = (values, isLogged) => {
 
     const data = values;
 
@@ -59,7 +59,7 @@ export const Login = (values, signUp) => {
         .then((response) => {
             if (response.status === 200 ) {
                 // this.setState({signUp: true});
-                signUp(true);
+                isLogged(true);
             }
         })
         .catch((error) => {

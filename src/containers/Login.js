@@ -10,7 +10,7 @@ class Login extends Component {
     state = {
         visible: false,
         loading: false,
-        signUp: false,
+        isLogged: false,
     };
 
     showModal = () => {
@@ -34,12 +34,12 @@ class Login extends Component {
         this.setState({visible: false});
     };
 
-    isSignedUp = (singStatus) => {
-        this.setState({signUp: singStatus});
+    isLogged = (loggedStatus) => {
+        this.setState({isLogged: loggedStatus});
     };
 
     render() {
-        if (this.state.signUp) {
+        if (this.state.isLogged) {
             console.log('se cambioSignUp', this.state);
             notification['success']({
                message: 'Hola :)',
@@ -50,7 +50,7 @@ class Login extends Component {
 
         return(
             <div>
-                <LoginForm signUp={this.isSignedUp} />
+                <LoginForm isLogged={this.isLogged} />
                 <SignUpForm
                     visible={this.state.visible}
                     showModal={this.showModal}
