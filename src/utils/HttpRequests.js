@@ -15,8 +15,6 @@ export const SignUp = (values) => {
 
   axios.post(backUrl+'/students', data)
       .then((response) => {
-          console.log('response back', response);
-          console.log('response status', response.status);
           if ( response.status === 201 ){
               notification['success']({
                   message: "Se ha creado la cuenta :)",
@@ -25,23 +23,26 @@ export const SignUp = (values) => {
           }
       })
       .catch((error) => {
-          console.log('ERROR', error);
-          console.log('ERROR status', error.response.status);
-          let message = "";
+          let message = "Algo malo paso :(";
 
-          switch (error.response.status) {
-              case 400:
-                  message = "Los datos no son validos ";
-                  break;
-              case 500:
-                  message = "Error Interno";
-                  break;
-              case 502:
-                  message = "Intentalo mas tarde...";
-                  break;
-              default :
-                  message = "Asegurate de estar conectado a internet.";
-                  break;
+          if (error.response) {
+              switch (error.response.status) {
+                  case 400:
+                      message = "Los datos no son validos ";
+                      break;
+                  case 409:
+                      message = "Esta matricula ya ha sido registrada";
+                      break;
+                  case 500:
+                      message = "Error Interno";
+                      break;
+                  case 502:
+                      message = "Intentalo mas tarde...";
+                      break;
+                  default :
+                      message = "Asegurate de estar conectado a internet.";
+                      break;
+              }
           }
 
           notification['error']({
@@ -58,29 +59,30 @@ export const Login = (values, isLogged) => {
     axios.post(backUrl+'/login', data)
         .then((response) => {
             if (response.status === 200 ) {
-                // this.setState({signUp: true});
                 isLogged(true);
             }
         })
         .catch((error) => {
-            let message = "";
+            let message = "Algo malo paso :(";
 
-            switch (error.response.status) {
-                case 400:
-                    message = "petición no valida";
-                    break;
-                case 401:
-                    message = "La contraseña es incorrecta >.<";
-                    break;
-                case  404:
-                    message = "El usuario no existe :(";
-                    break;
-                case 502:
-                    message = "Intentalo mas tarde ...";
-                    break;
-                default:
-                    message = "Asegurate de estar conectado a internet.";
-                    break;
+            if (error.response) {
+                switch (error.response.status) {
+                    case 400:
+                        message = "petición no valida";
+                        break;
+                    case 401:
+                        message = "La contraseña es incorrecta >.<";
+                        break;
+                    case  404:
+                        message = "El usuario no existe :(";
+                        break;
+                    case 502:
+                        message = "Intentalo mas tarde ...";
+                        break;
+                    default:
+                        message = "Asegurate de estar conectado a internet.";
+                        break;
+                }
             }
 
             notification['error']({
