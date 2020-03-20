@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Layout, Menu} from "antd";
 import { SettingOutlined, PlayCircleOutlined, LogoutOutlined } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 const {Sider} = Layout;
 
 class SideNavigation extends Component {
@@ -10,15 +11,14 @@ class SideNavigation extends Component {
         this.state = {selectedKey: props.currentKey};
     }
 
-
+    menuClicked = (e) => {
+        this.setState({selectedKey: e.key });
+    };
 
     render() {
-
-        const menuClicked = (e) => {
-            console.log('click event', e);
-            this.setState({selectedKey: e.key });
-            this.setState({selectedKey: e.key });
-        };
+        if (this.state.selectedKey === "3"){
+            return (<Redirect to={{ pathname: "/login" }} />);
+        }
 
         return(
             <Sider style={{
@@ -33,7 +33,7 @@ class SideNavigation extends Component {
                     mode="inline"
                     defaultSelectedKeys={[this.state.selectedKey]}
                     selectedKeys={[this.state.selectedKey]}
-                    onClick={menuClicked}>
+                    onClick={this.menuClicked}>
 
                     <Menu.Item key="1">
                         <Link to={"/games"}>
@@ -50,10 +50,8 @@ class SideNavigation extends Component {
                     </Menu.Item>
 
                     <Menu.Item key="3">
-                        <Link to={"/login"}>
                             <LogoutOutlined />
                             <span className="nav-text">Salir</span>
-                        </Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

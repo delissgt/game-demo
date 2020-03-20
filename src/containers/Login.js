@@ -26,8 +26,6 @@ class Login extends Component {
         // setTimeout(()=>{
         //    this.setState({loading: false, visible: false});
         // }, 3000);
-        console.log('handle OK ')
-
     };
 
     handleCancel = () => {
@@ -39,8 +37,10 @@ class Login extends Component {
     };
 
     render() {
+        console.log('Login props', this.props);
+        console.log('changed isLogged state', this.state);
+
         if (this.state.isLogged) {
-            console.log('se cambioSignUp', this.state);
             notification['success']({
                message: 'Hola :)',
                description: 'has iniciado sesion',
