@@ -38,14 +38,14 @@ class SideNavigation extends Component {
                     <Menu.Item key="1">
                         <Link to={"/games"}>
                             <PlayCircleOutlined />
-                            <span className="nav-text">Juego</span>
+                            <span className="nav-text"> Juego</span>
                         </Link>
                     </Menu.Item>
 
                     <Menu.Item key="2">
                         <Link to={'/settings'}>
                             <SettingOutlined />
-                            <span className="nav-text">Configuración</span>
+                            <span className="nav-text"> Configuración</span>
                         </Link>
                     </Menu.Item>
 

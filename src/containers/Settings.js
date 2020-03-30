@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import {Layout} from "antd";
 import SideNavigation from "../components/SideNavigation";
 import SettingForm from "../components/Settings/SettingForm";
-
 const {Header, Content, Footer} = Layout;
 
 class Settings extends Component {
@@ -17,8 +16,6 @@ class Settings extends Component {
                     <Content style={{ margin: '24px 16px 0', overflow: 'initial' }} >
                         <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
 
-                        {/*<CardGame game={props.games}/>*/}
-                        <h1>setints content</h1>
                             <SettingForm/>
 
                         </div>
