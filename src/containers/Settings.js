@@ -2,11 +2,21 @@ import React, {Component} from "react";
 import {Layout} from "antd";
 import SideNavigation from "../components/SideNavigation";
 import SettingForm from "../components/Settings/SettingForm";
+import {Redirect} from "react-router-dom";
+import {checkTokenValid} from "../Helpers/TokenValid";
+
 const {Header, Content, Footer} = Layout;
 
 class Settings extends Component {
 
+    checkTokenValid = () => checkTokenValid();
+
     render() {
+
+        if (this.checkTokenValid() === false) {
+            return <Redirect to = {{pathname: "/login"}} />
+        }
+
         return(
             <Layout>
                 <SideNavigation currentKey="2"/>

@@ -2,8 +2,11 @@ import React, {Component} from "react";
 import SideNavigation from "../components/SideNavigation";
 import {Layout} from "antd";
 import Cards from "../components/Cards/Cards";
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 import {Redirect} from "react-router-dom";
+
+import {checkTokenValid} from "../Helpers/TokenValid";
+
 const {Header, Content, Footer} = Layout;
 
 class Games extends Component {
@@ -14,26 +17,28 @@ class Games extends Component {
         ]
     };
 
-    checkTokenValid = () => {
-        const accessToken = localStorage.getItem('access_token');
-        const refreshToken = localStorage.getItem('refresh_token');
+    // tokenValid = () => {
+    //     const accessToken = localStorage.getItem('access_token');
+    //     const refreshToken = localStorage.getItem('refresh_token');
+    //
+    //     if (accessToken !== null) {
+    //         const decoded = jwt_decode(accessToken);
+    //         const date = decoded['exp'] * 1000;
+    //         const now = Date.now();
+    //
+    //         if (now >= date) {
+    //             localStorage.clear();
+    //             return  false
+    //         } else {
+    //             return true;
+    //         }
+    //     } else {
+    //         localStorage.clear();
+    //         return false;
+    //     }
+    // };
 
-        if (accessToken !== null) {
-            const decoded = jwt_decode(accessToken);
-            const date = decoded['exp'] * 1000;
-            const now = Date.now();
-
-            if (now >= date) {
-                localStorage.clear();
-                return  false
-            } else {
-                return true;
-            }
-        } else {
-            localStorage.clear();
-            return false;
-        }
-    };
+    checkTokenValid = () => checkTokenValid();
 
 
     render() {
