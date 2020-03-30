@@ -10,7 +10,7 @@ class Login extends Component {
     state = {
         visible: false,
         loading: false,
-        isLogged: false,
+        accessToken: null,
     };
 
     showModal = () => {
@@ -32,25 +32,24 @@ class Login extends Component {
         this.setState({visible: false});
     };
 
-    isLogged = (loggedStatus) => {
-        this.setState({isLogged: loggedStatus});
-    };
+    componentDidMount() {
+        const accessToken = localStorage.getItem('access_token');
+        const refreshToken = localStorage.getItem('refresh_token');
+        console.log('ACCESS::::', accessToken);
+
+        this.setState({accessToken})
+    }
 
     render() {
-        console.log('Login props', this.props);
-        console.log('changed isLogged state', this.state);
+        const {accessToken} = this.state;
 
-        if (this.state.isLogged) {
-            notification['success']({
-               message: 'Hola :)',
-               description: 'has iniciado sesion',
-            });
+        if (accessToken !== null){
             return (<Redirect to = {{pathname: "/games"}}/>);
         }
 
         return(
             <div>
-                <LoginForm isLogged={this.isLogged} />
+                <LoginForm />
                 <SignUpForm
                     visible={this.state.visible}
                     showModal={this.showModal}

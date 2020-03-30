@@ -3,18 +3,25 @@ import {Form, Input, Button, Col} from "antd";
 import {UserOutlined, LockOutlined} from "@ant-design/icons";
 import './loginForm.css';
 import {Login} from "../../utils/HttpRequests";
+import buttonSound from "../../assets/button-37.mp3";
+import {withRouter} from "react-router-dom";
+
 
 const loginForm = (props) => {
 
     const onFinish = values => {
-        Login(values, props.isLogged);
+        Login(values, props.history);
     };
 
     const onFinishFailed = errorInfo => {
       console.log('errorInfo', errorInfo);
     };
 
-
+    const beep = () => {
+        const sound = new Audio();
+        sound.src = buttonSound;
+        sound.play();
+    };
 
     return (
         <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }}  style={{ paddingTop: '50px' }}>
@@ -87,6 +94,7 @@ const loginForm = (props) => {
                     type="primary"
                     htmlType="submit"
                     className="login-form-button"
+                    onMouseDown={beep}
                 >
                     Iniciar sesion
                 </Button>
@@ -96,4 +104,4 @@ const loginForm = (props) => {
   )
 };
 
-export default loginForm;
+export default withRouter(loginForm);

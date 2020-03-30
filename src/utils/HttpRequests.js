@@ -1,8 +1,9 @@
 import axios from 'axios';
 import {notification} from "antd";
+import React from "react";
 
 
-const backUrl = "http://localhost:5000";
+const backUrl = "http://localhost:5000/v1";
 
 
 export const SignUp = (values) => {
@@ -10,7 +11,8 @@ export const SignUp = (values) => {
         name: values["name"],
         enrollment : values['enrollment'],
         password: values['password'],
-        role: 'student'
+        role: 'student',
+        size_component: 'default'
     };
 
   axios.post(backUrl+'/students', data)
@@ -52,17 +54,26 @@ export const SignUp = (values) => {
 };
 
 
-export const Login = (values, isLogged) => {
+export const Login = (values, history) => {
 
     const data = values;
 
     axios.post(backUrl+'/login', data)
         .then((response) => {
+            // console.log('login', response.data);  // access and refresh token
+            // console.log('login', response.data['access_token']);  // access and refresh token
             if (response.status === 200 ) {
-                isLogged(true);
+
+                localStorage.setItem('access_token', response.data['access_token']);
+                localStorage.setItem('refresh_token', response.data['refresh_token']);
+                // history.pushState(url:  "/games")
+                console.log('Se pudo loguear Dibujar Games');
+                history.push("/games");
+                // return <Redirect to = {{pathname: "/games"}}/>;
             }
         })
         .catch((error) => {
+            console.log('ERROR lOGIN', error);
             let message = "Algo malo paso :(";
 
             if (error.response) {
