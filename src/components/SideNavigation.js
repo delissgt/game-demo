@@ -3,6 +3,8 @@ import {Layout, Menu} from "antd";
 import { SettingOutlined, PlayCircleOutlined, LogoutOutlined } from "@ant-design/icons";
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router-dom';
+import {deleteTokenValid} from "../Helpers/TokenValid";
+
 const {Sider} = Layout;
 
 class SideNavigation extends Component {
@@ -16,7 +18,10 @@ class SideNavigation extends Component {
     };
 
     render() {
-        if (this.state.selectedKey === "3"){
+        let {selectedKey} = this.state;
+
+        if (selectedKey === "3"){
+            deleteTokenValid();
             return (<Redirect to={{ pathname: "/login" }} />);
         }
 
@@ -59,7 +64,6 @@ class SideNavigation extends Component {
 
     }
 
-
-};
+}
 
 export default SideNavigation
