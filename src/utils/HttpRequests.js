@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {notification} from "antd";
 import React from "react";
-
+import {checkTokenValid} from "../Helpers/TokenValid";
+import jwt_decode from 'jwt-decode';
 
 const backUrl = "http://localhost:5000/v1";
 
@@ -101,4 +102,60 @@ export const Login = (values, history) => {
             });
 
         })
+};
+
+
+export const studentPassword = (values, history) => {
+    const data = {
+        password: values['password']
+    };
+
+    const accessToken = localStorage.getItem('access_token');
+
+    console.log('DATA PASS', data);
+
+    if (accessToken !== null) {
+        const decoded = jwt_decode(accessToken);
+        const enrollment = decoded['identity'];
+        console.log('tipi enro', typeof(enrollment));
+        console.log('DECODED', decoded);
+
+        axios.patch(backUrl+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
+            .then((response) => {
+                console.log('response Ok', response);
+                if (response.status === 204) {
+                    notification['success']({
+                        message: "La contraseña se ha actualizado :)"
+                    })
+                }
+
+            })
+            .catch((error) => {
+                console.log('Error', error);
+                let message = "Algo malo paso :(";
+
+                if (error.response) {
+                    switch (error.response.status) {
+                        case 401:
+                            message = "Uppsss! Tu sesion ha expirado";
+                            history.push("/login");
+                            break;
+                        case 400:
+                            message = "No se pudo modificar la contraseña";
+                            break;
+                        case 502:
+                            message = "Peticion mal formada :(";
+                            break;
+                        default:
+                            message = "Asegurate de estar conectado a internet";
+                            break;
+                    }
+                }
+                notification['error']({
+                    message: message,
+                });
+            // todo catch 401 when token has expired or invalid
+            })
+    }
+
 };

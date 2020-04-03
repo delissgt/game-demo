@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import {Button, Divider, Form, Radio, Input, Tabs} from 'antd';
 import {SmileOutlined, UnlockOutlined} from "@ant-design/icons";
 
-import {ChangeComponentsSize, ChangePassword} from "./Tabs/Tabs";
+import ChangePassword from "./Tabs/ChangePassword";
+import ChangeComponentsSize from "./Tabs/ChangeComponentsSize";
 
 const  {TabPane} = Tabs;
 
@@ -12,19 +13,9 @@ class settingForm extends Component {
     };
 
 
-    handleSizeChange = e => {
-      this.setState({size: e.target.value});
-        // console.log('handle size state', this.state.size);
-    };
-
-    onFinish = () => {
-        console.log('onFinish');
-    };
-
-
     render(){
         const { size } = this.state;
-            console.log('render', size);
+            // console.log('render', size);
         return(
             <div>
                 <Tabs defaultActiveKey="1">
