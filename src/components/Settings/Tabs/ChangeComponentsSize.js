@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import {Form, Radio, PageHeader, Button} from 'antd';
 import {Redirect} from "react-router-dom";
 import {checkTokenValid} from "../../../Helpers/TokenValid";
-
-import {studentPassword} from "../../../utils/HttpRequests";
+import {withRouter} from "react-router-dom";
+import {studentPassword, studentSize} from "../../../utils/HttpRequests";
 
 class ChangeComponentsSize extends Component{
     state ={
@@ -13,7 +13,7 @@ class ChangeComponentsSize extends Component{
     onFinish = (values) => {
         // TODO call to httpRequest for savin changes, before check Token9
         console.log('onFinish Save Changes ', values);
-        studentPassword(values);
+        studentSize(values, this.props['history']);
     };
 
     onFinishFailed = errorInfo => {
@@ -65,4 +65,4 @@ class ChangeComponentsSize extends Component{
     }
 }
 
-export default ChangeComponentsSize;
+export default withRouter(ChangeComponentsSize);

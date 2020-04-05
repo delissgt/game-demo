@@ -159,3 +159,45 @@ export const studentPassword = (values, history) => {
     }
 
 };
+
+export const studentSize = (values, history) => {
+    const data = values;
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken !== null ) {
+        const decoded = jwt_decode(accessToken);
+        const enrollment = decoded['identity'];
+        axios.patch(backUrl+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
+            .then((response) => {
+                if (response.status === 204) {
+                    notification['success']({
+                        message: "Se han actualizado los cambios"
+                    })
+                }
+
+            })
+            .catch((error) => {
+                let message = "Algo malo paso :(";
+
+                if (error.response) {
+                    switch (error.response.status) {
+                        case 401:
+                            message = "Uppsss! Tu sesion ha expirado";
+                            history.push("/login");
+                            break;
+                        case 400:
+                            message = "No pudo realizar los cambios";
+                            break;
+                        case 502:
+                            message = "Peticion mal formada :(";
+                            break;
+                        default:
+                            message = "Asegurate de estar conectado a internet";
+                            break;
+                    }
+                }
+                notification['error']({
+                    message: message,
+                });
+            })
+    }
+};
