@@ -9,11 +9,9 @@ const {Header, Content, Footer} = Layout;
 
 class Settings extends Component {
 
-    checkTokenValid = () => checkTokenValid();
-
     render() {
 
-        if (this.checkTokenValid() === false) {
+        if (checkTokenValid() === false) {
             return <Redirect to = {{pathname: "/login"}} />
         }
 
