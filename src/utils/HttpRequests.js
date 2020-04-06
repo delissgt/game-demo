@@ -112,13 +112,9 @@ export const studentPassword = (values, history) => {
 
     const accessToken = localStorage.getItem('access_token');
 
-    console.log('DATA PASS', data);
-
     if (accessToken !== null) {
         const decoded = jwt_decode(accessToken);
         const enrollment = decoded['identity'];
-        console.log('tipi enro', typeof(enrollment));
-        console.log('DECODED', decoded);
 
         axios.patch(backUrl+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
             .then((response) => {
@@ -131,29 +127,46 @@ export const studentPassword = (values, history) => {
 
             })
             .catch((error) => {
-                console.log('Error', error);
                 let message = "Algo malo paso :(";
 
                 if (error.response) {
                     switch (error.response.status) {
                         case 401:
-                            message = "Uppsss! Tu sesion ha expirado";
-                            history.push("/login");
+                            const refreshToken = localStorage.getItem('refresh_token');
+                            axios.post(backUrl+'/refresh-token', {}, { headers: {"Authorization" : `Bearer ${refreshToken}` } })
+                                .then((response) => {
+                                    localStorage.setItem('access_token', response.data['access_token']);
+                                    studentPassword(data, history)
+                                })
+                                .catch((error) => {
+                                    message = "Uppsss! Tu sesion ha expirado";
+                                    history.push("/login");
+                                    notification['error']({
+                                        message: message,
+                                    });
+                                });
                             break;
                         case 400:
                             message = "No se pudo modificar la contraseña";
+                            notification['error']({
+                                message: message,
+                            });
                             break;
                         case 502:
                             message = "Peticion mal formada :(";
+                            notification['error']({
+                                message: message,
+                            });
                             break;
                         default:
                             message = "Asegurate de estar conectado a internet";
+                            notification['error']({
+                                message: message,
+                            });
                             break;
                     }
                 }
-                notification['error']({
-                    message: message,
-                });
+
             // todo catch 401 when token has expired or invalid
             })
     }
