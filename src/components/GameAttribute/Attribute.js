@@ -4,6 +4,8 @@ import definition from '../../assets/attributes/AttributesDefinitionAndExample.p
 // import example from '../../assets/game1AttributesExample.png';
 
 // import AttributeExerciseBlockly from './AttributeExerciseBlockly';
+import {checkTokenValid} from "../../Helpers/TokenValid";
+import {Redirect} from "react-router-dom";
 import AttributeExercise from "./AttributeExercise";
 import AttributeTest from "./AttributeTest";
 import AttributeTestMedium from "./AttributeTestMedium";
@@ -62,6 +64,10 @@ class Attribute extends Component {
     render() {
 
         const { current } = this.state;
+
+        if (checkTokenValid() === false) {
+            return <Redirect to = {{pathname: "/login"}} />
+        }
 
         return(
             <div style={{ 'padding': 20 }}>
