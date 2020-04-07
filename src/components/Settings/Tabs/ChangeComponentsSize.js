@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, Radio, PageHeader, Button} from 'antd';
+import {Form, Radio, PageHeader, Button, Col} from 'antd';
 import {Redirect} from "react-router-dom";
 import {checkTokenValid} from "../../../Helpers/TokenValid";
 import {withRouter} from "react-router-dom";
@@ -35,7 +35,7 @@ class ChangeComponentsSize extends Component{
         const { size } = this.state;
 
         return(
-            <div>
+            <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }}  style={{ paddingTop: '50px' }}>
                 <PageHeader title="Cambia el tamaño de los componentes"/>
                 <Form
                     // labelCol={{ span: 4, }}
@@ -59,8 +59,7 @@ class ChangeComponentsSize extends Component{
                         </Button>
                     </Form.Item>
                 </Form>
-            </div>
-
+            </Col>
         );
     }
 }

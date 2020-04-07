@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, PageHeader, Button, Input} from 'antd';
+import {Form, PageHeader, Button, Input, Col} from 'antd';
 import {studentPassword} from "../../../utils/HttpRequests";
 import {withRouter} from "react-router-dom";
 
@@ -12,7 +12,7 @@ class ChangePassword extends Component {
 
     render() {
         return(
-            <div>
+            <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }}  style={{ paddingTop: '50px' }}>
                 <PageHeader title="Cambia tu contraseña"/>
                <Form
                    onFinish={this.onFinish}
@@ -139,7 +139,7 @@ class ChangePassword extends Component {
 
                </Form>
 
-            </div>
+            </Col>
 
         );
     }
