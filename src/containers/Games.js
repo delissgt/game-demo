@@ -5,7 +5,7 @@ import Cards from "../components/Cards/Cards";
 // import jwt_decode from 'jwt-decode';
 import {Redirect} from "react-router-dom";
 
-import {checkTokenValid} from "../Helpers/TokenValid";
+import {checkTokenValid, refreshToken} from "../Helpers/TokenValid";
 
 const {Header, Content, Footer} = Layout;
 
@@ -13,14 +13,15 @@ class Games extends Component {
     state = {
         games: [
             {id:1, title:'Atributos', description:'Aprenderas Atributos', gamePage:'/games/attributes', buttonStatus: false },
-            {id:2, title:'Metodos', description:'Aprenderas Metodos', gamePage:'/../games/methods', buttonStatus: true },
+            {id:2, title:'Metodos', description:'Aprenderas Metodos', gamePage:'/games/methods', buttonStatus: true },
         ]
     };
 
 
     render() {
+        console.log('render Games...');
         if (checkTokenValid() === false) {
-            return <Redirect to = {{pathname: "/login"}} />
+            refreshToken(this.props.history);
         }
 
         return (
