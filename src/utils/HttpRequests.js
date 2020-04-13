@@ -1,10 +1,9 @@
 import axios from 'axios';
 import {notification} from "antd";
-import React from "react";
-import {checkTokenValid} from "../Helpers/TokenValid";
+import * as config from "../config";
 import jwt_decode from 'jwt-decode';
 
-const backUrl = "http://localhost:5000/v1";
+const urlBackend = config.urlBackend;
 
 
 export const SignUp = (values) => {
@@ -16,7 +15,7 @@ export const SignUp = (values) => {
         size_component: 'default'
     };
 
-  axios.post(backUrl+'/students', data)
+  axios.post(urlBackend+'/students', data)
       .then((response) => {
           if ( response.status === 201 ){
               notification['success']({
@@ -59,7 +58,7 @@ export const Login = (values, history) => {
 
     const data = values;
 
-    axios.post(backUrl+'/login', data)
+    axios.post(urlBackend+'/login', data)
         .then((response) => {
             // console.log('login', response.data);  // access and refresh token
             // console.log('login', response.data['access_token']);  // access and refresh token
@@ -116,7 +115,7 @@ export const studentPassword = (values, history) => {
         const decoded = jwt_decode(accessToken);
         const enrollment = decoded['identity'];
 
-        axios.patch(backUrl+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
+        axios.patch(urlBackend+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
             .then((response) => {
                 console.log('response Ok', response);
                 if (response.status === 204) {
@@ -133,7 +132,7 @@ export const studentPassword = (values, history) => {
                     switch (error.response.status) {
                         case 401:
                             const refreshToken = localStorage.getItem('refresh_token');
-                            axios.post(backUrl+'/refresh-token', {}, { headers: {"Authorization" : `Bearer ${refreshToken}` } })
+                            axios.post(urlBackend+'/refresh-token', {}, { headers: {"Authorization" : `Bearer ${refreshToken}` } })
                                 .then((response) => {
                                     localStorage.setItem('access_token', response.data['access_token']);
                                     studentPassword(data, history)
@@ -179,7 +178,7 @@ export const studentSize = (values, history) => {
     if (accessToken !== null ) {
         const decoded = jwt_decode(accessToken);
         const enrollment = decoded['identity'];
-        axios.patch(backUrl+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
+        axios.patch(urlBackend+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
             .then((response) => {
                 if (response.status === 204) {
                     notification['success']({
@@ -194,23 +193,41 @@ export const studentSize = (values, history) => {
                 if (error.response) {
                     switch (error.response.status) {
                         case 401:
-                            message = "Uppsss! Tu sesion ha expirado";
-                            history.push("/login");
+                            const refreshToken = localStorage.getItem('refresh_token');
+                            axios.post(urlBackend+'/refresh-token', {}, { headers: {"Authorization" : `Bearer ${refreshToken}` } })
+                                .then((response) => {
+                                    localStorage.setItem('access_token', response.data['access_token']);
+                                    studentSize(data, history)
+                                })
+                                .catch((error) => {
+                                    message = "Uppsss! Tu sesion ha expirado";
+                                    history.push("/login");
+                                    notification['error']({
+                                        message: message,
+                                    });
+                                });
                             break;
                         case 400:
                             message = "No pudo realizar los cambios";
+                            notification['error']({
+                                message: message,
+                            });
                             break;
                         case 502:
                             message = "Peticion mal formada :(";
+                            notification['error']({
+                                message: message,
+                            });
                             break;
                         default:
                             message = "Asegurate de estar conectado a internet";
+                            notification['error']({
+                                message: message,
+                            });
                             break;
                     }
                 }
-                notification['error']({
-                    message: message,
-                });
+
             })
     }
 };

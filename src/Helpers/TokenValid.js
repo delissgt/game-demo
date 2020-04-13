@@ -1,8 +1,9 @@
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import {notification, message} from "antd";
+import * as config from "../config";
 
-const backUrl = "http://localhost:5000/v1";
+const urlBackend = config.urlBackend;
 
 export function checkTokenValid() {
     const accessToken = localStorage.getItem('access_token');
@@ -34,7 +35,7 @@ export function refreshToken(history) {
 
     const refreshToken = localStorage.getItem('refresh_token');
 
-    axios.post(backUrl+'/refresh-token', {}, { headers: {"Authorization" : `Bearer ${refreshToken}` } })
+    axios.post(urlBackend+'/refresh-token', {}, { headers: {"Authorization" : `Bearer ${refreshToken}` } })
         .then((response) => {
             localStorage.setItem('access_token', response.data['access_token']);
         })
