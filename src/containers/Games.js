@@ -1,13 +1,9 @@
 import React, {Component} from "react";
 import SideNavigation from "../components/SideNavigation";
-import {Layout} from "antd";
 import Cards from "../components/Cards/Cards";
-// import jwt_decode from 'jwt-decode';
-import {Redirect} from "react-router-dom";
 
 import {checkTokenValid, refreshToken} from "../Helpers/TokenValid";
 
-const {Header, Content, Footer} = Layout;
 
 class Games extends Component {
     state = {
@@ -25,21 +21,9 @@ class Games extends Component {
         }
 
         return (
-            <Layout>
-                <SideNavigation currentKey="1"/>
-
-                <Layout style={{ marginLeft: 200 }}>
-                    <Header style={{ background: '#fff', padding: 0 }} />
-                    <Content style={{ margin: '24px 16px 0', overflow: 'initial' }} >
-                        <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
-
-                            <Cards games={this.state.games}/>
-
-                        </div>
-                    </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ant Design DEliss Here</Footer>
-                </Layout>
-            </Layout>
+            <SideNavigation currentKey="1">
+                <Cards games={this.state.games}/>
+            </SideNavigation>
         )
     }
 }

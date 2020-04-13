@@ -4,13 +4,17 @@ import { SettingOutlined, PlayCircleOutlined, LogoutOutlined } from "@ant-design
 import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router-dom';
 import {deleteTokenValid} from "../Helpers/TokenValid";
+import SettingForm from "./Settings/SettingForm";
 
-const {Sider} = Layout;
+const {Sider, Header, Content, Footer} = Layout;
 
 class SideNavigation extends Component {
     constructor(props) {
         super(props);
-        this.state = {selectedKey: props.currentKey};
+        this.state = {
+            selectedKey: props.currentKey,
+            children: props.children
+        };
     }
 
     menuClicked = (e) => {
@@ -26,6 +30,7 @@ class SideNavigation extends Component {
         }
 
         return(
+            <Layout>
             <Sider style={{
                 overflow: 'auto',
                 height: '100vh',
@@ -34,7 +39,7 @@ class SideNavigation extends Component {
             }}>
                 <div className="logo" />
                 <Menu
-                    theme="dark"
+                    theme="light"
                     mode="inline"
                     defaultSelectedKeys={[this.state.selectedKey]}
                     selectedKeys={[this.state.selectedKey]}
@@ -60,6 +65,18 @@ class SideNavigation extends Component {
                     </Menu.Item>
                 </Menu>
             </Sider>
+                <Layout style={{ marginLeft: 200 }}>
+                    <Header style={{ background: '#fff', padding: 0 }} />
+                    <Content style={{ margin: '24px 16px 0', overflow: 'initial' }} >
+                        <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
+
+                            {this.state.children}
+
+                        </div>
+                    </Content>
+                    <Footer style={{ textAlign: 'center' }}>Ant Design DEliss Here</Footer>
+                </Layout>
+            </Layout>
         )
 
     }
