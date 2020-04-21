@@ -5,6 +5,7 @@ import Login from '../src/containers/Login';
 
 import Games from '../src/containers/Games';
 import Attribute from "../src/components/GameAttribute/Attribute";
+import Methods from "./components/GameMethods/Methods";
 import Settings from "../src/containers/Settings";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
                 <Route path="/login" exact component={Login}  />
                 <Route path='/games' exact component={Games}/>
                 <Route exact path="/games/attributes" component={Attribute} />
+                <Route exact path="/games/methods" component={Methods} />
                 <Route exact path="/settings" component={Settings} />
             </div>
             </BrowserRouter>

@@ -16,3 +16,9 @@
 .ant-transfer-list-header-title {
     color: #000000d9;
 }
+
+.ant-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+}

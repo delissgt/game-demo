@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Button, Form, Input} from "antd";
+import {Modal, Button, Form, Input, Space} from "antd";
 
 
 const formItemLayout = {
@@ -36,8 +36,8 @@ const signUpForm = (props) => {
     };
 
     return (
-       <div>
-           <Button  type="link" onClick={props.showModal}>
+       <Space size={50} direction={"vertical"}>
+           <Button  type="link" onClick={props.showModal} size={"large"}>
                Quiero registrarme!
            </Button>
            <Modal
@@ -54,6 +54,7 @@ const signUpForm = (props) => {
                    { ...formItemLayout }
                    name="register"
                    onFinish={onFinish}
+                   size={"large"}
                >
                    <Form.Item
                        name="name"
@@ -155,7 +156,7 @@ const signUpForm = (props) => {
                </Form>
 
            </Modal>
-       </div>
+       </Space>
     )
 };
 

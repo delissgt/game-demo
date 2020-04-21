@@ -30,6 +30,7 @@ const loginForm = (props) => {
             className="login-form"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
+            size={"large"}
         >
             <Form.Item
                 name="enrollment"
@@ -94,7 +95,7 @@ const loginForm = (props) => {
                     type="primary"
                     htmlType="submit"
                     className="login-form-button"
-                    onMouseDown={beep}
+                    // onMouseDown={beep}
                 >
                     Iniciar sesion
                 </Button>

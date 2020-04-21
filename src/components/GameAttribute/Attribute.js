@@ -2,7 +2,10 @@ import React, {Component} from "react";
 import {Steps, Button, message} from "antd";
 import definition from '../../assets/attributes/AttributesDefinitionAndExample.png';
 // import example from '../../assets/game1AttributesExample.png';
-
+import DobleCards from "./DobleCards";
+import Impostor from "./Impostor";
+import ShowPdf from "../showPdf/showPdf";
+import introductionStory from "../../assets/attributes/Introduction.pdf";
 // import AttributeExerciseBlockly from './AttributeExerciseBlockly';
 import {checkTokenValid} from "../../Helpers/TokenValid";
 import {Redirect} from "react-router-dom";
@@ -21,15 +24,17 @@ const {Step} = Steps;
 const steps=[
     {
         title: 'Introducción',
-        content: <img alt='attribute definition and example' src={definition}/> ,
+        // content: <img alt='attribute definition and example' src={definition}/> ,
+        content: <ShowPdf instructions={"mi texto con instrcciones"}  storyFile={introductionStory} />,
     },
     {
         title: 'Ejercicio',
-        content: <AttributeExercise/>,
+        // content: <AttributeExercise/>,
+        content: <DobleCards/>
     },
     {
         title: 'Nivel Facil',
-        content: <AttributeTest/>,
+        content: <Impostor/>,
     },
     {
         title: 'Nivel Medio',
@@ -84,18 +89,18 @@ class Attribute extends Component {
                 <div className="steps-action">
 
                     {current > 0 && (
-                        <Button style={{ marginRight: 16 }} onClick={()=> this.prev()}>
+                        <Button style={{ marginRight: 16 , width: "45%"}}  size="large" onClick={()=> this.prev()}>
                             Anterior
                         </Button>
                     )}
 
                     {current < steps.length - 1 && (
-                        <Button type="primary" onClick={() => this.next()}>Siguiente</Button>
+                        <Button type="primary" size="large" style={{width: "45%"}}  onClick={() => this.next()}>Siguiente</Button>
                     )}
 
                     {current === steps.length - 1 && (
                         <Link to={'/games'}>
-                        <Button type="primary"
+                        <Button type="primary" size="large"
                                 onClick={() => message.success('Nivel Completado!!')}>
                             Al fin !!!
                         </Button>

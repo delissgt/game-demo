@@ -4,7 +4,6 @@ import LoginForm from '../components/LoginForm/LoginForm';
 import SignUpForm from '../components/SignUpForm/SignUpForm'
 
 import { SignUp }  from "../utils/HttpRequests";
-import {notification} from "antd";
 
 class Login extends Component {
     state = {
@@ -34,8 +33,8 @@ class Login extends Component {
 
     componentDidMount() {
         const accessToken = localStorage.getItem('access_token');
-        const refreshToken = localStorage.getItem('refresh_token');
-        console.log('ACCESS::::', accessToken);
+        // const refreshToken = localStorage.getItem('refresh_token');
+        // console.log('ACCESS::::', accessToken);
 
         this.setState({accessToken})
     }

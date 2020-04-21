@@ -3,7 +3,7 @@ import {Form, Radio, PageHeader, Button, Col} from 'antd';
 import {Redirect} from "react-router-dom";
 import {checkTokenValid} from "../../../Helpers/TokenValid";
 import {withRouter} from "react-router-dom";
-import {studentPassword, studentSize} from "../../../utils/HttpRequests";
+import {studentSize} from "../../../utils/HttpRequests";
 
 class ChangeComponentsSize extends Component{
     state ={
