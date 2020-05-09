@@ -1,5 +1,11 @@
 .button-check-answer {
     padding: 2%;
+    position: fixed;
+    right: 38px;
+    bottom: 100px;
+    flex-direction: column;
+    z-index: 2147483640;
+    line-height: 0.5715
 }
 
 .ant-radio-wrapper {

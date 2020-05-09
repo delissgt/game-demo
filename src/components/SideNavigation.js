@@ -31,12 +31,15 @@ class SideNavigation extends Component {
 
         return(
             <Layout>
-            <Sider style={{
+            <Sider
+                style={{
                 overflow: 'auto',
                 height: '100vh',
                 position: 'fixed',
                 left: 0,
-            }}>
+                }}
+                theme={"light"}
+            >
                 <div className="logo" />
                 <Menu
                     theme="light"

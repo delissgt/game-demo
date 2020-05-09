@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-import {notification, message} from "antd";
+import {notification} from "antd";
 import * as config from "../config";
 
 const urlBackend = config.urlBackend;

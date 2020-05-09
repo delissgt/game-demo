@@ -7,12 +7,14 @@ const urlBackend = config.urlBackend;
 
 
 export const SignUp = (values) => {
+    console.log('VALUES REGISTER');
     const data = {
         name: values["name"],
         enrollment : values['enrollment'],
         password: values['password'],
         role: 'student',
-        size_component: 'default'
+        size_component: 'default',
+        game_register: '{}',
     };
 
   axios.post(urlBackend+'/students', data)

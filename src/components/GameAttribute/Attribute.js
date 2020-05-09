@@ -1,14 +1,11 @@
 import React, {Component} from "react";
 import {Steps, Button, message} from "antd";
-import definition from '../../assets/attributes/AttributesDefinitionAndExample.png';
-// import example from '../../assets/game1AttributesExample.png';
 import DobleCards from "./DobleCards";
 import Impostor from "./Impostor";
 import ShowPdf from "../showPdf/showPdf";
-import introductionStory from "../../assets/attributes/Introduction.pdf";
-// import AttributeExerciseBlockly from './AttributeExerciseBlockly';
-import {checkTokenValid} from "../../Helpers/TokenValid";
-import {Redirect} from "react-router-dom";
+import introductionStory from "../../assets/Story/Story-Introduction.pdf";
+import buildUpStory from "../../assets/Story/Story-BuildUp.pdf";
+import {checkTokenValid, refreshToken} from "../../Helpers/TokenValid";
 import AttributeExercise from "./AttributeExercise";
 import AttributeTest from "./AttributeTest";
 import AttributeTestMedium from "./AttributeTestMedium";
@@ -25,20 +22,21 @@ const steps=[
     {
         title: 'Introducción',
         // content: <img alt='attribute definition and example' src={definition}/> ,
-        content: <ShowPdf instructions={"mi texto con instrcciones"}  storyFile={introductionStory} />,
+        content: <ShowPdf instructions={"Lee la historia del juego te ayudará para puedas a ganar los juegos. Animo !"}  storyFile={introductionStory} />,
     },
     {
-        title: 'Ejercicio',
+        title: 'Cartas Dobles',
         // content: <AttributeExercise/>,
         content: <DobleCards/>
     },
     {
-        title: 'Nivel Facil',
-        content: <Impostor/>,
+        title: 'Desarrollo',
+        content: <ShowPdf instructions={"Lee la historia del juego te ayudará para puedas a ganar los juegos. Animo !"}  storyFile={buildUpStory} />,
     },
     {
-        title: 'Nivel Medio',
-        content: <AttributeTestMedium/>,
+        title: 'Impostor',
+        content: <Impostor/>,
+        // content: <AttributeTestMedium/>,
     },
     {
         title: 'Nivel Difícil',
@@ -51,13 +49,15 @@ class Attribute extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: 0
+            current: 0,
+            currentText: "Siguiente"
         }
     }
 
     next() {
         const current = this.state.current + 1;
         this.setState({current});
+        this.setState({currentText: "Saltar"})
     }
 
     prev() {
@@ -69,9 +69,10 @@ class Attribute extends Component {
     render() {
 
         const { current } = this.state;
+        window.scrollTo(0,0);
 
         if (checkTokenValid() === false) {
-            return <Redirect to = {{pathname: "/login"}} />
+            refreshToken(this.props.history);
         }
 
         return(
@@ -84,23 +85,29 @@ class Attribute extends Component {
                     ))}
                 </Steps>
                 {/*<div className="steps-content">{steps[current].content}</div>*/}
-                <div className="steps-content" style={{ 'padding': 20 }}>{steps[current].content}</div>
+                <div
+                    id="contentGameAttributes"
+                    className="steps-content"
+                    style={{ 'padding': 20, backgroundColor: "#fff3e6",
+                    backgroundImage: "linear-gradient(90deg, rgba(255, 188, 31, 0.11) 50%, transparent 50%), linear-gradient(rgba(232, 173, 61, 0.22) 50%, #0000 50%",
+                    backgroundSize: "50px 50px" }}
+                >{steps[current].content}</div>
 
                 <div className="steps-action">
 
                     {current > 0 && (
                         <Button style={{ marginRight: 16 , width: "45%"}}  size="large" onClick={()=> this.prev()}>
-                            Anterior
+                            Anterior solo demo
                         </Button>
                     )}
 
                     {current < steps.length - 1 && (
-                        <Button type="primary" size="large" style={{width: "45%"}}  onClick={() => this.next()}>Siguiente</Button>
+                        <Button  size="large" style={{width: "45%"}}  onClick={() => this.next()} type="primary" ghost>{this.state.currentText}</Button>
                     )}
 
                     {current === steps.length - 1 && (
                         <Link to={'/games'}>
-                        <Button type="primary" size="large"
+                        <Button  size="large"
                                 onClick={() => message.success('Nivel Completado!!')}>
                             Al fin !!!
                         </Button>
