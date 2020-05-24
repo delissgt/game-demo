@@ -68,6 +68,11 @@ export const Login = (values, history) => {
 
                 localStorage.setItem('access_token', response.data['access_token']);
                 localStorage.setItem('refresh_token', response.data['refresh_token']);
+
+                const decodeSize =  jwt_decode(response.data['access_token']);
+                const size = decodeSize['user_claims']['size_content'];
+                localStorage.setItem('size', size);
+
                 // history.pushState(url:  "/games")
                 console.log('Se pudo loguear Dibujar Games');
                 history.push("/games");
@@ -183,6 +188,7 @@ export const studentSize = (values, history) => {
         axios.patch(urlBackend+'/students/'+ enrollment.toString(), data, { headers: {"Authorization" : `Bearer ${accessToken}` } })
             .then((response) => {
                 if (response.status === 204) {
+                    localStorage.setItem('size', values['size']);
                     notification['success']({
                         message: "Se han actualizado los cambios"
                     })
