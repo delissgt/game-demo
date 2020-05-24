@@ -7,11 +7,10 @@ import {studentSize} from "../../../utils/HttpRequests";
 
 class ChangeComponentsSize extends Component{
     state ={
-        size: 'default',
+        size: localStorage.getItem('size'),
     };
 
     onFinish = (values) => {
-        // TODO call to httpRequest for savin changes, before check Token9
         console.log('onFinish Save Changes ', values);
         studentSize(values, this.props['history']);
     };
@@ -25,6 +24,30 @@ class ChangeComponentsSize extends Component{
     };
 
     checkTokenValid = () => { checkTokenValid() };
+
+
+    componentDidMount() {
+        window.addEventListener("keyup", this.validateKey, false)
+    }
+
+    validateKey = (event) => {
+        let e;
+        event.key ? e=event.key : e = event.toString();
+        switch (e) {
+            case "1":
+                console.log('BOTON 1', e);
+                break;
+            case "2":
+                console.log('BOTON 2', e);
+                break;
+            case "3":
+                console.log('BOTON 3', e);
+                break;
+            default:
+                console.log('OTRO BOTON', e);
+                break;
+        }
+    };
 
 
     render() {
@@ -46,9 +69,14 @@ class ChangeComponentsSize extends Component{
                     onFinishFailed={this.onFinishFailed}
                 >
                     <Form.Item label="Tamaño: " name="size">
+
                         <Radio.Group value={size} size={size} onChange={this.handleSizeChange}>
                             <Radio.Button value="small">Pequeño</Radio.Button>
+                            <br/>
+                            <br/>
                             <Radio.Button value="default">Mediano</Radio.Button>
+                                <br/>
+                                <br/>
                             <Radio.Button value="large">Grande</Radio.Button>
                         </Radio.Group>
                     </Form.Item>
