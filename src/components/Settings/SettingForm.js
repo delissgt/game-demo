@@ -9,17 +9,22 @@ const  {TabPane} = Tabs;
 
 class settingForm extends Component {
     state = {
-      size: 'default',
+      size: localStorage.getItem('size'),
+    };
+
+    onChangeSize = () => {
+      this.setState({'size': localStorage.getItem('size')})
     };
 
 
     render(){
         const { size } = this.state;
-            // console.log('render', size);
+
         return(
             <div>
                 <Tabs defaultActiveKey="1">
                     <TabPane
+                        forceRender={true}
                         tab={
 
                             <span>
@@ -30,10 +35,11 @@ class settingForm extends Component {
                         key="1"
                     >
 
-                        <ChangeComponentsSize/>
+                        <ChangeComponentsSize componentSize={this.state.size} callback={this.onChangeSize}/>
 
                     </TabPane>
                     <TabPane
+                        forceRender={true}
                         tab={
                             <span>
                                 <UnlockOutlined />
@@ -42,7 +48,7 @@ class settingForm extends Component {
                         }
                         key="2"
                     >
-                        <ChangePassword/>
+                        <ChangePassword componentSize={this.state.size}/>
 
                     </TabPane>
                 </Tabs>

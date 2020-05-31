@@ -179,7 +179,7 @@ export const studentPassword = (values, history) => {
 
 };
 
-export const studentSize = (values, history) => {
+export const studentSize = (values, history, callback) => {
     const data = values;
     const accessToken = localStorage.getItem('access_token');
     if (accessToken !== null ) {
@@ -191,7 +191,9 @@ export const studentSize = (values, history) => {
                     localStorage.setItem('size', values['size']);
                     notification['success']({
                         message: "Se han actualizado los cambios"
-                    })
+                    });
+
+                    callback()
                 }
 
             })

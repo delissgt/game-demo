@@ -7,12 +7,12 @@ import {studentSize} from "../../../utils/HttpRequests";
 
 class ChangeComponentsSize extends Component{
     state ={
-        size: localStorage.getItem('size'),
+        size: this.props.componentSize,
     };
 
     onFinish = (values) => {
-        console.log('onFinish Save Changes ', values);
-        studentSize(values, this.props['history']);
+        studentSize(values, this.props['history'], this.props.callback);
+
     };
 
     onFinishFailed = errorInfo => {
