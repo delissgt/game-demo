@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {Form, Radio, PageHeader, Button, Col} from 'antd';
-import {Redirect} from "react-router-dom";
-import {checkTokenValid} from "../../../Helpers/TokenValid";
-import {withRouter} from "react-router-dom";
 import {studentSize} from "../../../utils/HttpRequests";
+import {checkTokenValid} from "../../../Helpers/TokenValid";
+import {Redirect, withRouter} from "react-router-dom";
 
 class ChangeComponentsSize extends Component{
     state ={
