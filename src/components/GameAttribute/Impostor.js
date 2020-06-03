@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Avatar, Button, Card, Col, Divider, Radio, Row} from "antd";
+import {Avatar, Button, Card, Col, Divider, notification, Radio, Row} from "antd";
 
 import leopard from "../../assets/Animals/leopard-48.png";
 import lion from "../../assets/Animals/lion-48.png";
@@ -8,26 +8,43 @@ import kangaroo from "../../assets/Animals/kangaroo-48.png";
 import parrot from "../../assets/Animals/parrot-48.png";
 import flamingo from "../../assets/Animals/flamingo-48.png";
 
+import {AttributeGame} from "../../utils/HttpRequestGame";
+
 import "./style.css";
+import {AppstoreAddOutlined, MehOutlined} from "@ant-design/icons";
 
 const {Meta} = Card;
 
 const Impostor = () => {
-
+    const [size, ] = useState(localStorage.getItem('size'));
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
     const [answer3, setAnswer3] = useState(0);
 
-    const [buttonState1, setButton1] = useState(false);
-    const [buttonState3, setButton3] = useState(false);
-    const [buttonState4, setButton4] = useState(false);
-    const [buttonState6, setButton6] = useState(false);
-    const [buttonState7, setButton7] = useState(false);
-    const [buttonState9, setButton9] = useState(false);
+
+    const handleClick = () => {
+        if (answer1 === 0 || answer2 === 0 || answer3 === 0){
+            notification.open({
+                message: "Contenta TODAS las preguntas",
+                icon: <MehOutlined  style={{color: '#FA541C'}} />
+            })
+        }else {
+            let game = {
+                game_level: "game2",
+                user_answer : {
+                    A1: answer1,
+                    A2: answer2,
+                    A3: answer3,
+                }
+            };
+            AttributeGame(game);
+        }
+    };
+
 
     useEffect( () => {
         window.addEventListener("keyup", validateKey, false)
-    }, [answer1]);
+    }, []);
 
     const validateKey = (event) => {
         let e;
@@ -36,68 +53,45 @@ const Impostor = () => {
         switch (e) {
             case "1":
                 setAnswer1(1);
-                setButton1(true);
-                setButton3(false);
                 break;
             case "3":
                 setAnswer1(3);
-                setButton1(false);
-                setButton3(true);
                 break;
             case "4":
                 setAnswer2(4);
-                setButton4(true);
-                setButton6(false);
                 break;
             case "6":
                 setAnswer2(6);
-                setButton4(false);
-                setButton6(true);
                 break;
             case "7":
                 setAnswer3(7);
-                setButton7(true);
-                setButton9(false);
                 break;
             case "9":
                 setAnswer3(9);
-                setButton7(false);
-                setButton9(true);
                 break;
             default:
-                console.log('no hacer nada');
+                notification.open({
+                    message: "Upppss Tecla no valida",
+                    description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
+                    icon: <AppstoreAddOutlined style={{color: '#00e6bb'}} />
+                });
                 break;
 
         }
     };
 
-    const handleClick = () => {
-      console.log ("respuestas");
-      console.log('1', answer1);
-      console.log('2', answer2);
-      console.log('3', answer3);
-      let answer = {
-          AttributesUserAnswerGame2 : {
-              answer1: answer1,
-              answer2: answer2,
-              answer3: answer3,
-          }
-      };
-      console.log('ANSWER send to endpoint', answer);
-
-
-    };
-
     return(
         <div>
-            <h1 style={{ backgroundColor: "#fa563c" }}>
+            <div style={{background: "linear-gradient(90deg, rgba(0,209,237,0.5) 0%, rgba(0,230,187,1) 65%, rgba(144,244,137,0.5) 100%)"}}>
+            <h1>
                 Seleccina la mejor tarjeta que represente a cada grupo de animales.
             </h1>
-            <h2 style={{ backgroundColor: "#fa563c" }}>
+            <h2>
                 Oopss.. Parece que el Sr. Pancho tenia sueño de verdad.
                 Revisa las tarjetas, algunas de ellas tienen atributos que no son importantes o no deberian de estar.
                 Al final da click para revisar tus respuestas. Animo !
             </h2>
+            </div>
             <Col span={12}>
                     <Button type="primary" size={"large"} onClick={() => {handleClick()}}
                         className={'button-check-answer'}
@@ -125,13 +119,18 @@ const Impostor = () => {
                 </Col>
 
                     <Col span={8}>
-                        <Radio.Group onChange={e => setAnswer1(e.target.value) || validateKey(e.target.value)} size={"large"}>
-                            <Radio.Button value={1} checked={buttonState1}>
+                        <Radio.Group
+                            value={answer1}
+                            onChange={e => setAnswer1(e.target.value)}
+                            size={size}
+                            className={"radio-wrapper"}
+                        >
+                            <Radio.Button value={1} className={"radio-button"}>
                                 Tarjeta 1
                             </Radio.Button>
                             <Divider type="vertical" />
                             <Divider type="vertical" />
-                            <Radio.Button value={3} checked={buttonState3}>
+                            <Radio.Button value={3} className={"radio-button"}>
                                 Tarjeta 3
                             </Radio.Button>
                         </Radio.Group>
@@ -176,15 +175,17 @@ const Impostor = () => {
                 </Col>
 
                 <Col span={8}>
-                    <Radio.Group onChange={e => setAnswer2(e.target.value) || validateKey(e.target.value)} size={"large"}>
-
-                        <Radio.Button value={4} checked={buttonState4}>
+                    <Radio.Group
+                        value={answer2}
+                        onChange={e => setAnswer2(e.target.value)}
+                        size={size}
+                        className={"radio-wrapper"}
+                    >
+                        <Radio.Button value={4} className={"radio-button"}>
                             Tarjeta 4
                         </Radio.Button>
-
                         <Divider type="vertical" /> <Divider type="vertical" />
-
-                        <Radio.Button value={6} checked={buttonState6}>
+                        <Radio.Button value={6} className={"radio-button"}>
                             Tarjeta 6
                         </Radio.Button>
                     </Radio.Group>
@@ -231,15 +232,17 @@ const Impostor = () => {
                 </Col>
 
                 <Col span={8}>
-                    <Radio.Group onChange={e => setAnswer3(e.target.value) || validateKey(e.target.value)} size={"large"}>
-
-                        <Radio.Button value={7} checked={buttonState7}>
+                    <Radio.Group
+                        value={answer3}
+                        onChange={e => setAnswer3(e.target.value)}
+                        size={size}
+                        className={"radio-wrapper"}
+                    >
+                        <Radio.Button value={7} className={"radio-button"}>
                             Tarjeta 7
                         </Radio.Button>
-
                         <Divider type="vertical" /> <Divider type="vertical" />
-
-                        <Radio.Button value={9} checked={buttonState9}>
+                        <Radio.Button value={9} className={"radio-button"}>
                             Tarjeta 9
                         </Radio.Button>
                     </Radio.Group>

@@ -15,6 +15,7 @@ import "./style.css";
 const {Meta} = Card;
 
 const DobleCards = () => {
+    const [size, ] = useState(localStorage.getItem('size'));
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
     const [answer3, setAnswer3] = useState(0);
@@ -35,15 +36,9 @@ const DobleCards = () => {
                     A3: answer3,
                 }
             };
+
             AttributeGame(game);
-            notification.open({
-                message: "Wooo hoooo!!! respuestas, colocar resultado AQUI",
-                icon: <SmileOutlined  style={{color: '#1890FF'}} />
-            })
-
         }
-
-
     };
 
 
@@ -80,10 +75,8 @@ const DobleCards = () => {
                     description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
                     icon: <AppstoreAddOutlined style={{color: '#00e6bb'}} />
                 });
-                console.log('no hacer nada');
                 break;
         }
-
     };
 
 
@@ -143,13 +136,16 @@ const DobleCards = () => {
                  <Col span={8}>
                      <Radio.Group
                          value={answer1}
-                         onChange={e => setAnswer1(e.target.value)} size={"large"}>
-                         <Radio.Button value={1}>
+                         onChange={e => setAnswer1(e.target.value)}
+                         size={size}
+                         className={"radio-wrapper"}
+                     >
+                         <Radio.Button value={1} className={"radio-button"}>
                              Tarjeta 1
                          </Radio.Button>
                          <Divider type={"vertical"} />
                          <Divider type={"vertical"} />
-                         <Radio.Button value={3}>
+                         <Radio.Button value={3} className={"radio-button"}>
                              Tarjeta 3
                          </Radio.Button>
                      </Radio.Group>
@@ -193,14 +189,17 @@ const DobleCards = () => {
                  <Col span={8}>
                      <Radio.Group
                          value={answer2}
-                         onChange={e => setAnswer2(e.target.value)} size={"large"}>
-                         <Radio.Button value={4}>
-                             Izquierda 4
+                         onChange={e => setAnswer2(e.target.value)}
+                         size={size}
+                         className={"radio-wrapper"}
+                     >
+                         <Radio.Button value={4} className={"radio-button"}>
+                             Tarjeta 4
                          </Radio.Button>
                          <Divider type={"vertical"} />
                          <Divider type={"vertical"} />
-                         <Radio.Button value={6}>
-                             Derecha 6
+                         <Radio.Button value={6} className={"radio-button"}>
+                             Tarjeta 6
                          </Radio.Button>
                      </Radio.Group>
                  </Col>
@@ -217,7 +216,6 @@ const DobleCards = () => {
                          <p>Peso: 200.00 kg</p>
                          <Divider style={{ borderWidth: "2px 0 0" }}/>
                          <p>Tarjeta 6</p>
-                         {/*<Button onClick={()=> handleClick('2')} size={'large'} block={true} style={{ width: "80%" }}>OK</Button>*/}
                      </Card>
                  </Col>
              </Row>
@@ -243,14 +241,17 @@ const DobleCards = () => {
                  <Col span={8}>
                      <Radio.Group
                          value={answer3}
-                         onChange={e => setAnswer3(e.target.value)} size={"large"}>
-                         <Radio.Button value={7}>
-                             Izquierda 7
+                         onChange={e => setAnswer3(e.target.value)}
+                         size={size}
+                         className={"radio-wrapper"}
+                     >
+                         <Radio.Button value={7} className={"radio-button"}>
+                             Tarjeta 7
                          </Radio.Button>
                          <Divider type={"vertical"} />
                          <Divider type={"vertical"} />
-                         <Radio.Button value={9}>
-                             Derecha 9
+                         <Radio.Button value={9} className={"radio-button"}>
+                             Tarjeta 9
                          </Radio.Button>
                      </Radio.Group>
                  </Col>

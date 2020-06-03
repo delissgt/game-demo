@@ -28,3 +28,11 @@
     height: 60px;
     border-radius: 12px;
 }
+
+.radio-wrapper {
+    display: inline;
+}
+
+.radio-button {
+    width: 45%;
+}
