@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom';
 import {Redirect} from 'react-router-dom';
 import {deleteTokenValid} from "../Helpers/TokenValid";
 import SettingForm from "./Settings/SettingForm";
+import "./sideNavigation.css";
+
 
 const {Sider, Header, Content, Footer} = Layout;
 
@@ -39,6 +41,8 @@ class SideNavigation extends Component {
                 left: 0,
                 }}
                 theme={"light"}
+                className={"menu-item-adapted"}
+                width={150}
             >
                 <div className="logo" />
                 <Menu
@@ -46,29 +50,32 @@ class SideNavigation extends Component {
                     mode="inline"
                     defaultSelectedKeys={[this.state.selectedKey]}
                     selectedKeys={[this.state.selectedKey]}
-                    onClick={this.menuClicked}>
+                    onClick={this.menuClicked}
+                    style={{ display: "block", height: "71px" }}
+                >
 
-                    <Menu.Item key="1">
+                    <Menu.Item key="1" style={{height: "71px"}}>
                         <Link to={"/games"}>
-                            <PlayCircleOutlined />
+                            <PlayCircleOutlined style={{fontSize: "20px"}}/>
                             <span className="nav-text"> Juego</span>
+
                         </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="2">
+                    <Menu.Item key="2" style={{height: "71px"}}>
                         <Link to={'/settings'}>
-                            <SettingOutlined />
+                            <SettingOutlined  style={{fontSize: '20px'}} />
                             <span className="nav-text"> Configuración</span>
                         </Link>
                     </Menu.Item>
 
-                    <Menu.Item key="3">
-                            <LogoutOutlined />
+                    <Menu.Item key="3" style={{height: "71px"}}>
+                            <LogoutOutlined style={{fontSize: '20px'}} />
                             <span className="nav-text">Salir</span>
                     </Menu.Item>
                 </Menu>
             </Sider>
-                <Layout style={{ marginLeft: 200 }}>
+                <Layout style={{ marginLeft: 150 }}>
                     <Header style={{ background: '#fff', padding: 0 }} />
                     <Content style={{ margin: '24px 16px 0', overflow: 'initial' }} >
                         <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
@@ -77,7 +84,7 @@ class SideNavigation extends Component {
 
                         </div>
                     </Content>
-                    <Footer style={{ textAlign: 'center' }}>Ant Design DEliss Here</Footer>
+                    <Footer style={{ textAlign: 'center' }}>trabajo de tesis </Footer>
                 </Layout>
             </Layout>
         )
