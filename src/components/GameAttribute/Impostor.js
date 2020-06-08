@@ -15,7 +15,7 @@ import {AppstoreAddOutlined, MehOutlined} from "@ant-design/icons";
 
 const {Meta} = Card;
 
-const Impostor = () => {
+const Impostor = (props) => {
     const [size, ] = useState(localStorage.getItem('size'));
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
@@ -82,7 +82,7 @@ const Impostor = () => {
 
     return(
         <div>
-            <div style={{background: "linear-gradient(90deg, rgba(0,209,237,0.5) 0%, rgba(0,230,187,1) 65%, rgba(144,244,137,0.5) 100%)"}}>
+            <div style={{background: props.titleColor }}>
             <h1>
                 Seleccina la mejor tarjeta que represente a cada grupo de animales.
             </h1>

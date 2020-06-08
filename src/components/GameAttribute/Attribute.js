@@ -2,9 +2,11 @@ import React, {Component} from "react";
 import {Steps, Button, message} from "antd";
 import DobleCards from "./DobleCards";
 import Impostor from "./Impostor";
+import Review from "./Review";
 import ShowPdf from "../showPdf/showPdf";
 import introductionStory from "../../assets/Story/Story-Introduction.pdf";
 import buildUpStory from "../../assets/Story/Story-BuildUp.pdf";
+import climaxStory from "../../assets/Story/Story-Climax.pdf";
 import {checkTokenValid, refreshToken} from "../../Helpers/TokenValid";
 import AttributeExercise from "./AttributeExercise";
 import AttributeTest from "./AttributeTest";
@@ -20,28 +22,44 @@ const {Step} = Steps;
 
 const steps=[
     {
-        title: 'Introducción',
+        title: 'Idea',
         // content: <img alt='attribute definition and example' src={definition}/> ,
-        content: <ShowPdf instructions={"Lee la historia del juego te ayudará para puedas a ganar los juegos. Animo !"}  storyFile={introductionStory} />,
+        content: <ShowPdf storyFile={introductionStory}  titleColor = {"linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(144,244,137,1) 100%)"} />,
+        // content: <AttributeDifficult/>,
     },
     {
         title: 'Cartas Dobles',
         // content: <AttributeExercise/>,
-        content: <DobleCards/>
+        content: <DobleCards titleColor = {"linear-gradient(90deg, rgba(144,244,137,1) 0%, rgba(0,230,187,1) 100%)"} />
     },
     {
-        title: 'Desarrollo',
-        content: <ShowPdf instructions={"Lee la historia del juego te ayudará para puedas a ganar los juegos. Animo !"}  storyFile={buildUpStory} />,
+        title: 'Mas atributos',
+        content: <ShowPdf storyFile={buildUpStory} titleColor={"linear-gradient(90deg, rgba(0,230,187,1) 0%, rgba(0,209,237,1) 100%)"} />,
     },
     {
         title: 'Impostor',
-        content: <Impostor/>,
+        content: <Impostor titleColor={"linear-gradient(90deg, rgba(0,209,237,1) 0%, rgba(0,181,255,1) 100%)"} />,
         // content: <AttributeTestMedium/>,
     },
     {
-        title: 'Nivel Difícil',
-        content: <AttributeDifficult/>,
+        title: 'De-Soft',
+        content: <ShowPdf storyFile={climaxStory} titleColor={"linear-gradient(90deg, rgba(0,181,255,1) 0%, rgba(24,144,255,1) 100%)"} />
+    },
+    {
+        title: 'Revisando ando',
+        // content: <AttributeDifficult/>,
+        content: <Review titleColor={"linear-gradient(90deg, rgba(24,144,255,1) 0%, rgba(103,125,233,1) 100%)"} />,
+    },
+    {
+        title: 'Fiesta',
+        // content: <AttributeDifficult/>,
+        content: <Review titleColor={"linear-gradient(90deg, rgba(103,125,233,1) 0%, rgba(134,107,206,1) 100%)"} />,
     }
+    // {
+    //     title: 'Nivel Difícil',
+    //     // content: <AttributeDifficult/>,
+    //     content: <Review titleColor={"linear-gradient(90deg, rgba(134,107,206,1) 0%, rgba(151,89,177,1) 100%)"} />,
+    // }
 ];
 
 class Attribute extends Component {
@@ -88,9 +106,9 @@ class Attribute extends Component {
                 <div
                     id="contentGameAttributes"
                     className="steps-content"
-                    style={{ 'padding': 20, backgroundColor: "#fff3e6",
-                    backgroundImage: "linear-gradient(90deg, rgba(255, 188, 31, 0.11) 50%, transparent 50%), linear-gradient(rgba(232, 173, 61, 0.22) 50%, #0000 50%",
-                    backgroundSize: "50px 50px" }}
+                    style={{ 'padding': 20,
+                    backgroundImage: "linear-gradient(0deg, rgba(226,240,255,1) 0%, rgba(250,250,250,1) 100% )",
+                    }}
                 >{steps[current].content}</div>
 
                 <div className="steps-action">

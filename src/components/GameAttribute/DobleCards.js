@@ -14,7 +14,7 @@ import "./style.css";
 
 const {Meta} = Card;
 
-const DobleCards = () => {
+const DobleCards = (props) => {
     const [size, ] = useState(localStorage.getItem('size'));
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
@@ -70,11 +70,11 @@ const DobleCards = () => {
                 setAnswer3(9);
                 break;
             default:
-                notification.open({
-                    message: "Upppss Tecla no valida",
-                    description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
-                    icon: <AppstoreAddOutlined style={{color: '#00e6bb'}} />
-                });
+                // notification.open({
+                //     message: "Upppss Tecla no valida",
+                //     description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
+                //     icon: <AppstoreAddOutlined style={{color: '#00e6bb'}} />
+                // });
                 break;
         }
     };
@@ -83,7 +83,8 @@ const DobleCards = () => {
 
   return(
      <div>
-         <div style={{ background: "linear-gradient(90deg, rgba(0,230,187,0.5) 0%, rgba(144,244,137,1) 65%, rgba(249,248,113,0.5) 100%)"}}>
+         <div style={{ background: props.titleColor}}>
+         {/*    linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(144,244,137,1) 100%)*/}
          <h1 >
              Elige la tarjeta correcta de cada par de tarjetas.
          </h1>

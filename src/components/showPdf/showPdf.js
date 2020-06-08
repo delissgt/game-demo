@@ -1,13 +1,13 @@
 import React from "react";
-// import introductionStory from "../../assets/attributes/Introduction.pdf"
 const showPdf = (props) => {
     console.log('PROPS EN SHOW PDF', props);
 
     return(
         <div>
-            <h2>
-                {props.instructions}
-            </h2>
+            <h1 style={{ background: props.titleColor }}>
+                {/*{props.instructions}*/}
+                Lee la historia te ayudará para puedas a ganar los juegos. Animo !
+            </h1>
             <embed src={props.storyFile} width="90%" height="900rem"/>
         </div>
     )
