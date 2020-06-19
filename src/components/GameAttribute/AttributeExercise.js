@@ -23,14 +23,23 @@ class AttributeExercise extends Component {
             {
                 indexes: ["Hello", "Hi"],
                 action: () => {
-                    Artyom.say("Hello, how are you?");
+                    Artyom.say("how are you?");
                 }
             },
             {
-                indexes: [/How are you/, /Regular expressions supported/],
-                smart: true,
+                // indexes: [/What' s up /, /Regular expressions supported/],
+                indexes: ["What' s up "],
+                // smart: true,
                 action: () => {
                     Artyom.say("I'm fine, thanks for asking !");
+                }
+            },
+            {
+                // indexes: [/What' s up /, /Regular expressions supported/],
+                indexes: ["I am beautiful "],
+                // smart: true,
+                action: () => {
+                    Artyom.say("Yes you are !");
                 }
             },
             {

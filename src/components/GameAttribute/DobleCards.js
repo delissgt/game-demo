@@ -11,6 +11,7 @@ import Giraffe from '../../assets/Animals/giraffe-48.png';
 import {AttributeGame} from "../../utils/HttpRequestGame";
 
 import "./style.css";
+import AttributeDifficult from "./AttributeDifficult";
 
 const {Meta} = Card;
 
@@ -93,6 +94,7 @@ const DobleCards = (props) => {
              TIP: El valor del atributo no describe bien a los atributos del animal.
              Ayudate con la tarjeta del Leon.
          </h2>
+             <AttributeDifficult/>
          </div>
 
          <Row gutter={16}>

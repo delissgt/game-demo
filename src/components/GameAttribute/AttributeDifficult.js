@@ -112,20 +112,20 @@ class AttributeDifficult extends Component {
     render() {
         return (
             <div>
-                <h1>Welcome to Jarvis Assistant DELISSS HERE!</h1>
-                <p>In this very basic assistant, you can say hello and ask for some reports e.g `Generate report of April of this year`</p>
+                {/*<h1>Welcome to Jarvis Assistant DELISSS HERE!</h1>*/}
+                {/*<p>In this very basic assistant, you can say hello and ask for some reports e.g `Generate report of April of this year`</p>*/}
                 {/* Voice commands action buttons */}
                 <input type="button" value="Start Artyom" disabled={this.state.artyomActive} onClick={this.startAssistant}/>
                 <input type="button" value="Stop Artyom" disabled={!this.state.artyomActive} onClick={this.stopAssistant}/>
 
-                {/* Speech synthesis Area */}
+                {/*/!* Speech synthesis Area *!/*/}
 
-                <p>I can read some text for you if you want:</p>
+                {/*<p>I can read some text for you if you want:</p>*/}
 
-                <textarea rows="5" onChange={this.handleTextareaChange} value={this.state.textareaValue}/>
-                <br/>
-                {/* Read the text inside the textarea with artyom */}
-                <input type="button" value="Read Text" disabled={this.state.artyomIsReading} onClick={this.speakText}/>
+                {/*<textarea rows="5" onChange={this.handleTextareaChange} value={this.state.textareaValue}/>*/}
+                {/*<br/>*/}
+                {/*/!* Read the text inside the textarea with artyom *!/*/}
+                {/*<input type="button" value="Read Text" disabled={this.state.artyomIsReading} onClick={this.speakText}/>*/}
             </div>
         )
     }
