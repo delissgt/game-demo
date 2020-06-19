@@ -16,7 +16,7 @@ const card = (props) => {
                         title={game.title}
                         bordered={false}
                         actions={[
-                            <Rate character={<TrophyFilled />}/>,
+                            <Rate character={<TrophyFilled />} disabled defaultValue={game.buttonStatus}/>,
                         ]}
                     >
                         <p>{game.description}</p>

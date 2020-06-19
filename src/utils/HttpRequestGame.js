@@ -69,3 +69,25 @@ export const AttributeGame = (values) => {
     }
 
 };
+
+export const DataGames = () => {
+    const accessToken = localStorage.getItem('access_token');
+
+    if (accessToken !== null) {
+        axios.get(urlGame+'/games', { headers: {"Authorization" : `Bearer ${accessToken}` } } )
+            .then((response) => {
+                // console.log('responseGames', response);
+                // console.log('responseGamesDataGAMESSS', response.data.games);
+
+                const games = response.data.games;
+                console.log('GAMES', games);
+
+                return ("HOLA");
+
+            })
+            .catch((error) => {
+                console.log('ErrorGetGames', error);
+            })
+    }
+    
+};
