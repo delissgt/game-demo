@@ -24,8 +24,8 @@ const steps=[
     {
         title: 'Idea',
         // content: <img alt='attribute definition and example' src={definition}/> ,
-        content: <ShowPdf storyFile={introductionStory}  titleColor = {"linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(144,244,137,1) 100%)"} />,
-        // content: <AttributeDifficult/>,
+        // content: <ShowPdf storyFile={introductionStory}  titleColor = {"linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(144,244,137,1) 100%)"} />,
+        content: <AttributeDifficult/>,
     },
     {
         title: 'Cartas Dobles',
@@ -53,7 +53,7 @@ const steps=[
     {
         title: 'Fiesta',
         // content: <AttributeDifficult/>,
-        content: <Review titleColor={"linear-gradient(90deg, rgba(103,125,233,1) 0%, rgba(134,107,206,1) 100%)"} />,
+        content: <ShowPdf storyFile={climaxStory} titleColor={"linear-gradient(90deg, rgba(103,125,233,1) 0%, rgba(134,107,206,1) 100%)"} />,
     }
     // {
     //     title: 'Nivel Difícil',

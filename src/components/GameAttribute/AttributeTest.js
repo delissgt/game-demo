@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import bird from '../../assets/attributes/bird.png';
+// import bird from '../../assets/attributes/bird.png';
 import {Table, Input, Button, notification} from 'antd';
 
 
@@ -88,10 +88,10 @@ class AttributeTest extends Component {
             <div style={{display: "inline-flex"}}>
 
                 <div style={{ margin: '1%'}}>
-                    <img alt='secret-character' src={bird}
-                         style={{
-                             width: 300, height:300,
-                             transform: 'rotate('+this.state.rotate+ 'deg) rotateY('+this.state.rotateY+'deg)' }}/>
+                    {/*<img alt='secret-character' src={bird}*/}
+                    {/*     style={{*/}
+                    {/*         width: 300, height:300,*/}
+                    {/*         transform: 'rotate('+this.state.rotate+ 'deg) rotateY('+this.state.rotateY+'deg)' }}/>*/}
                 </div>
                 <div style={{ margin: '1%'}}>
                     {/*table content*/}
