@@ -83,8 +83,8 @@ const Review = (props) => {
                   }`;
 
     const code2 = `class Herbívoro = {
-                    constructor ( cantidad_alimento, dieta, salud, dentadura) {
-                        this.cantidad_alimento = cantidad_alimento;
+                    constructor ( cantidad, dieta, salud, dentadura) {
+                        this.cantidad_alimento = cantidad;
                         this.dieta = dieta;
                         this.salud = salud;
                         this.estado_dentadura = dentadura;
@@ -125,7 +125,7 @@ const Review = (props) => {
                 <Divider/>
 
                 <Row gutter={16}>
-                    <Col span={7}>
+                    <Col span={6}>
                         <Card
                             title="Carnivoros"
                         >
@@ -134,7 +134,7 @@ const Review = (props) => {
                         </Card>
                     </Col>
 
-                    <Col span={5}>
+                    <Col span={6}>
                         <Radio.Group
                             value={answer1}
                             onChange={e => setAnswer1(e.target.value)}
@@ -142,11 +142,11 @@ const Review = (props) => {
                             className={"radio-wrapper"}
                         >
                             <Radio.Button value={1} className={"radio-button"}>
-                                Correcto 1
+                                Correcto [1]
                             </Radio.Button>
                             <Divider orientation={'horizontal'}/>
                             <Radio.Button value={3} className={"radio-button"}>
-                                Faltan datos 3
+                                Incorrecto [3]
                             </Radio.Button>
                         </Radio.Group>
                     </Col>
@@ -162,7 +162,7 @@ const Review = (props) => {
                 <Divider/>
 
                 <Row gutter={16}>
-                    <Col span={7}>
+                    <Col span={6}>
                         <Card
                             title="Herviboros"
                         >
@@ -172,7 +172,7 @@ const Review = (props) => {
                         </Card>
                     </Col>
 
-                    <Col span={5}>
+                    <Col span={6}>
                         <Radio.Group
                             value={answer2}
                             onChange={e => setAnswer2(e.target.value)}
@@ -180,11 +180,11 @@ const Review = (props) => {
                             className={"radio-wrapper"}
                         >
                             <Radio.Button value={4} className={"radio-button"}>
-                                Correcto 4
+                                Correcto [4]
                             </Radio.Button>
                             <Divider orientation={'horizontal'}/>
                             <Radio.Button value={6} className={"radio-button"}>
-                                Faltan datos 6
+                                Incorrecto [6]
                             </Radio.Button>
                         </Radio.Group>
                     </Col>
@@ -200,7 +200,7 @@ const Review = (props) => {
                 <Divider/>
 
                 <Row gutter={16}>
-                    <Col span={7}>
+                    <Col span={6}>
                         <Card
                             title="Aves"
                         >
@@ -210,7 +210,7 @@ const Review = (props) => {
                         </Card>
                     </Col>
 
-                    <Col span={5}>
+                    <Col span={6}>
                         <Radio.Group
                             value={answer3}
                             onChange={e => setAnswer3(e.target.value)}
@@ -218,11 +218,11 @@ const Review = (props) => {
                             className={"radio-wrapper"}
                         >
                             <Radio.Button value={7} className={"radio-button"}>
-                                Correcto 7
+                                Correcto [7]
                             </Radio.Button>
                             <Divider orientation={'horizontal'}/>
                             <Radio.Button value={9} className={"radio-button"}>
-                                Faltan datos 9
+                                Incorrecto [9]
                             </Radio.Button>
                         </Radio.Group>
                     </Col>
