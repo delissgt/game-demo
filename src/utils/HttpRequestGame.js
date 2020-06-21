@@ -70,7 +70,7 @@ export const AttributeGame = (values) => {
 
 };
 
-export const DataGames = () => {
+export const DataGames = (setResponseState) => {
     const accessToken = localStorage.getItem('access_token');
 
     if (accessToken !== null) {
@@ -81,8 +81,8 @@ export const DataGames = () => {
 
                 const games = response.data.games;
                 console.log('GAMES', games);
+                setResponseState( games )
 
-                return ("HOLA");
 
             })
             .catch((error) => {
