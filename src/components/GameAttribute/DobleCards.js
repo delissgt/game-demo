@@ -11,7 +11,7 @@ import Giraffe from '../../assets/Animals/giraffe-48.png';
 import {AttributeGame} from "../../utils/HttpRequestGame";
 
 import "./style.css";
-import AttributeDifficult from "./AttributeDifficult";
+import VoiceControl from "../VoiceControl/VoiceControl";
 
 const {Meta} = Card;
 
@@ -48,6 +48,7 @@ const DobleCards = (props) => {
     } , []);
 
     const validateKey = (event) => {
+        console.log('reciviendo dato', event);
         let e;
         event.key ? e=event.key : e = event.toString();
 
@@ -81,7 +82,6 @@ const DobleCards = (props) => {
     };
 
 
-
   return(
      <div>
          <div style={{ background: props.titleColor}}>
@@ -94,7 +94,7 @@ const DobleCards = (props) => {
              TIP: El valor del atributo no describe bien a los atributos del animal.
              Ayudate con la tarjeta del Leon.
          </h2>
-             <AttributeDifficult/>
+             <VoiceControl/>
          </div>
 
          <Row gutter={16}>
@@ -143,12 +143,12 @@ const DobleCards = (props) => {
                          size={size}
                          className={"radio-wrapper"}
                      >
-                         <Radio.Button value={1} className={"radio-button"}>
+                         <Radio.Button value={1} className={"radio-button"} id={"buttonOne"}>
                              Tarjeta 1
                          </Radio.Button>
                          <Divider type={"vertical"} />
                          <Divider type={"vertical"} />
-                         <Radio.Button value={3} className={"radio-button"}>
+                         <Radio.Button value={3} className={"radio-button"} id={"buttonThree"}>
                              Tarjeta 3
                          </Radio.Button>
                      </Radio.Group>
@@ -196,12 +196,12 @@ const DobleCards = (props) => {
                          size={size}
                          className={"radio-wrapper"}
                      >
-                         <Radio.Button value={4} className={"radio-button"}>
+                         <Radio.Button value={4} className={"radio-button"} id={"buttonFour"}>
                              Tarjeta 4
                          </Radio.Button>
                          <Divider type={"vertical"} />
                          <Divider type={"vertical"} />
-                         <Radio.Button value={6} className={"radio-button"}>
+                         <Radio.Button value={6} className={"radio-button"} id={"buttonSix"}>
                              Tarjeta 6
                          </Radio.Button>
                      </Radio.Group>
@@ -248,12 +248,12 @@ const DobleCards = (props) => {
                          size={size}
                          className={"radio-wrapper"}
                      >
-                         <Radio.Button value={7} className={"radio-button"}>
+                         <Radio.Button value={7} className={"radio-button"} id={"buttonSeven"}>
                              Tarjeta 7
                          </Radio.Button>
                          <Divider type={"vertical"} />
                          <Divider type={"vertical"} />
-                         <Radio.Button value={9} className={"radio-button"}>
+                         <Radio.Button value={9} className={"radio-button"} id={"buttonNine"}>
                              Tarjeta 9
                          </Radio.Button>
                      </Radio.Group>
