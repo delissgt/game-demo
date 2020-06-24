@@ -6,9 +6,7 @@ import "codemirror/mode/javascript/javascript";
 import {AppstoreAddOutlined, MehOutlined} from "@ant-design/icons";
 import {AttributeGame} from "../../utils/HttpRequestGame";
 import "./style.css";
-
-
-
+import VoiceControl from "../VoiceControl/VoiceControl";
 
 const Review = (props) => {
     const [size, ] = useState(localStorage.getItem('size'));
@@ -114,6 +112,7 @@ const Review = (props) => {
                         Lee los requerimientos luego indetifica los atributos que se necesitan para cada clase de animal.
                         Revisa si es codigo de la derecha tiene los atributos que se piden.
                     </h2>
+                    <VoiceControl/>
                 </div>
 
                <Col span={12}>
@@ -141,11 +140,11 @@ const Review = (props) => {
                             size={size}
                             className={"radio-wrapper"}
                         >
-                            <Radio.Button value={1} className={"radio-button"}>
+                            <Radio.Button value={1} className={"radio-button"} id={"buttonOne"}>
                                 Correcto [1]
                             </Radio.Button>
                             <Divider orientation={'horizontal'}/>
-                            <Radio.Button value={3} className={"radio-button"}>
+                            <Radio.Button value={3} className={"radio-button"} id={"buttonThree"}>
                                 Incorrecto [3]
                             </Radio.Button>
                         </Radio.Group>
@@ -179,11 +178,11 @@ const Review = (props) => {
                             size={size}
                             className={"radio-wrapper"}
                         >
-                            <Radio.Button value={4} className={"radio-button"}>
+                            <Radio.Button value={4} className={"radio-button"} id={"buttonFour"}>
                                 Correcto [4]
                             </Radio.Button>
                             <Divider orientation={'horizontal'}/>
-                            <Radio.Button value={6} className={"radio-button"}>
+                            <Radio.Button value={6} className={"radio-button"} id={"buttonSix"}>
                                 Incorrecto [6]
                             </Radio.Button>
                         </Radio.Group>
@@ -217,11 +216,11 @@ const Review = (props) => {
                             size={size}
                             className={"radio-wrapper"}
                         >
-                            <Radio.Button value={7} className={"radio-button"}>
+                            <Radio.Button value={7} className={"radio-button"} id={"buttonSeven"}>
                                 Correcto [7]
                             </Radio.Button>
                             <Divider orientation={'horizontal'}/>
-                            <Radio.Button value={9} className={"radio-button"}>
+                            <Radio.Button value={9} className={"radio-button"} id={"buttonNine"}>
                                 Incorrecto [9]
                             </Radio.Button>
                         </Radio.Group>

@@ -12,6 +12,7 @@ import {AttributeGame} from "../../utils/HttpRequestGame";
 
 import "./style.css";
 import {AppstoreAddOutlined, MehOutlined} from "@ant-design/icons";
+import VoiceControl from "../VoiceControl/VoiceControl";
 
 const {Meta} = Card;
 
@@ -91,6 +92,7 @@ const Impostor = (props) => {
                 Revisa las tarjetas, algunas de ellas tienen atributos que no son importantes o no deberian de estar.
                 Al final da click para revisar tus respuestas. Animo !
             </h2>
+                <VoiceControl/>
             </div>
             <Col span={12}>
                     <Button type="primary" size={"large"} onClick={() => {handleClick()}}
@@ -125,12 +127,12 @@ const Impostor = (props) => {
                             size={size}
                             className={"radio-wrapper"}
                         >
-                            <Radio.Button value={1} className={"radio-button"}>
+                            <Radio.Button value={1} className={"radio-button"} id={"buttonOne"}>
                                 Tarjeta 1
                             </Radio.Button>
                             <Divider type="vertical" />
                             <Divider type="vertical" />
-                            <Radio.Button value={3} className={"radio-button"}>
+                            <Radio.Button value={3} className={"radio-button"} id={"buttonThree"}>
                                 Tarjeta 3
                             </Radio.Button>
                         </Radio.Group>
@@ -181,11 +183,11 @@ const Impostor = (props) => {
                         size={size}
                         className={"radio-wrapper"}
                     >
-                        <Radio.Button value={4} className={"radio-button"}>
+                        <Radio.Button value={4} className={"radio-button"} id={"buttonFour"}>
                             Tarjeta 4
                         </Radio.Button>
                         <Divider type="vertical" /> <Divider type="vertical" />
-                        <Radio.Button value={6} className={"radio-button"}>
+                        <Radio.Button value={6} className={"radio-button"} id={"buttonSix"}>
                             Tarjeta 6
                         </Radio.Button>
                     </Radio.Group>
@@ -238,11 +240,11 @@ const Impostor = (props) => {
                         size={size}
                         className={"radio-wrapper"}
                     >
-                        <Radio.Button value={7} className={"radio-button"}>
+                        <Radio.Button value={7} className={"radio-button"} id={"buttonSeven"}>
                             Tarjeta 7
                         </Radio.Button>
                         <Divider type="vertical" /> <Divider type="vertical" />
-                        <Radio.Button value={9} className={"radio-button"}>
+                        <Radio.Button value={9} className={"radio-button"} id={"buttonNine"}>
                             Tarjeta 9
                         </Radio.Button>
                     </Radio.Group>
