@@ -8,24 +8,15 @@ import {DataGames} from "../utils/HttpRequestGame";
 
 class Games extends Component {
 
-    rateValue = 5;
-    rateValue2 = 2;
-
     state = {
-        games: [
-            {id:1, title:'Atributos', description:'Aprenderas Atributos', gamePage:'/games/attributes', buttonStatus: this.rateValue },
-            {id:2, title:'Metodos', description:'Aprenderas Metodos', gamePage:'#', buttonStatus: this.rateValue2 },
-            // {id:2, title:'Metodos', description:'Aprenderas Metodos', gamePage:'/games/methods', buttonStatus: this.rateValue2 },
-        ],
         loading: true,
     };
 
 
     setGames = (games) => {
-        this.setState({'games2': games});
+        this.setState({'games': games});
         this.setState({'loading': false});
     };
-
 
     componentDidMount() {
         DataGames(this.setGames)
@@ -41,12 +32,12 @@ class Games extends Component {
             refreshToken(this.props.history);
         }
 
-        const {games2} = this.state;
+        const {games} = this.state;
 
         return (
             this.state.loading === true ? <h2>Loading...</h2> :
             <SideNavigation currentKey="1">
-                <Cards games={games2}/>
+                <Cards games={games}/>
             </SideNavigation>
         )
     }

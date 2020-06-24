@@ -10,13 +10,13 @@ const card = (props) => {
         return(
         <React.Fragment key={game.id}>
             <Col span={12}>
-                <Link to={game.gamePage }>
+                <Link to={game.url}>
                     <CardAntd
                         className={classes}
                         title={game.title}
                         bordered={false}
                         actions={[
-                            <Rate character={<TrophyFilled />} disabled defaultValue={game.buttonStatus}/>,
+                            <Rate character={<TrophyFilled />} disabled defaultValue={3}/>,
                         ]}
                     >
                         <p>{game.description}</p>
