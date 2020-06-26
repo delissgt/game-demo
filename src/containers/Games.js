@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import SideNavigation from "../components/SideNavigation";
 import Cards from "../components/Cards/Cards";
-
+import {Spin} from "antd";
 import {checkTokenValid, refreshToken} from "../Helpers/TokenValid";
 
 import {DataGames} from "../utils/HttpRequestGame";
@@ -35,12 +35,34 @@ class Games extends Component {
         const {games} = this.state;
 
         return (
-            this.state.loading === true ? <h2>Loading...</h2> :
-            <SideNavigation currentKey="1">
-                <Cards games={games}/>
-            </SideNavigation>
+            this.state.loading === true
+
+                ?
+                    <div style={SpinStyle.spincontainer}>
+                        <Spin tip="Cargando Juegos ..." size={"large"} style={SpinStyle.spin}/>
+                    </div>
+                :
+
+                    <SideNavigation currentKey="1">
+                        <Cards games={games}/>
+                    </SideNavigation>
         )
     }
 }
 
 export default Games;
+
+const SpinStyle = {
+    spincontainer: {
+        height: '100%',
+        width: '100%',
+        padding: '24px',
+        alignItems: 'center'
+    },
+    spin: {
+        textAlign: 'center',
+        marginBottom: '50px',
+        padding: '30rem 50px',
+        margin: '40px 0',
+    }
+};
