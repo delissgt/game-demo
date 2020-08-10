@@ -1,23 +1,20 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import SideNavigation from "../components/SideNavigation";
 import SettingForm from "../components/Settings/SettingForm";
-import {Redirect} from "react-router-dom";
-import {checkTokenValid} from "../Helpers/TokenValid";
-
+import { Redirect } from "react-router-dom";
+import { checkTokenValid } from "../Helpers/TokenValid";
 
 class Settings extends Component {
-
     render() {
-
         if (checkTokenValid() === false) {
-            return <Redirect to = {{pathname: "/login"}} />
+            return <Redirect to={{ pathname: "/login" }} />;
         }
 
-        return(
+        return (
             <SideNavigation currentKey="2">
                 <SettingForm />
             </SideNavigation>
-        )
+        );
     }
 }
 

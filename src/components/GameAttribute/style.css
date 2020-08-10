@@ -5,7 +5,7 @@
     bottom: 100px;
     flex-direction: column;
     z-index: 2147483640;
-    line-height: 0.5715
+    line-height: 0.5715;
 }
 
 .ant-radio-wrapper {
@@ -17,7 +17,7 @@
 }
 
 .ant-transfer-list-header-selected {
-    color: #00000000
+    color: #00000000;
 }
 .ant-transfer-list-header-title {
     color: #000000d9;
@@ -36,7 +36,6 @@
 .radio-button {
     width: 45%;
 }
-
 
 .col-code {
     text-align: initial;

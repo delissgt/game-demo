@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 // import {fromCode}  from "codemirror";
 
 class methods extends Component {
@@ -7,7 +7,7 @@ class methods extends Component {
             <div>
                 <p>aqui va el codigo</p>
             </div>
-        )
+        );
     }
 }
 

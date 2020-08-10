@@ -1,10 +1,9 @@
 export default class VoiceCommands {
-
-    constructor (ArtyomInstance){
+    constructor(ArtyomInstance) {
         this._artyom = ArtyomInstance;
     }
 
-    loadCommands(){
+    loadCommands() {
         let Artyom = this._artyom;
 
         return Artyom.addCommands([
@@ -13,15 +12,15 @@ export default class VoiceCommands {
                 action: () => {
                     // command for testing in Ensglish
                     Artyom.say("Hello, how are you?");
-                }
+                },
             },
             {
                 indexes: ["Hola"],
-                smart: true,
+                // smart: true,
                 action: () => {
                     // command for testing in Spanish
                     Artyom.say("Hola estoy funcionando");
-                }
+                },
             },
             {
                 indexes: ["option one", "option 1"],
@@ -30,7 +29,7 @@ export default class VoiceCommands {
                     Artyom.say("one choose");
                     // Artyom.say("elegir opcion");
                     document.getElementById("buttonOne").click();
-                }
+                },
             },
             {
                 indexes: ["option three", "option 3"],
@@ -39,7 +38,7 @@ export default class VoiceCommands {
                     Artyom.say("three choose");
                     // Artyom.say("elegir opcion");
                     document.getElementById("buttonThree").click();
-                }
+                },
             },
             {
                 indexes: ["option four", "option 4", "option for"],
@@ -48,7 +47,7 @@ export default class VoiceCommands {
                     // Artyom.say("elegir opcion");
                     Artyom.say("four choose");
                     document.getElementById("buttonFour").click();
-                }
+                },
             },
             {
                 indexes: ["option six", "option 6"],
@@ -56,7 +55,7 @@ export default class VoiceCommands {
                 action: () => {
                     Artyom.say("six choose");
                     document.getElementById("buttonSix").click();
-                }
+                },
             },
             {
                 indexes: ["option seven", "option 7"],
@@ -64,7 +63,7 @@ export default class VoiceCommands {
                 action: () => {
                     Artyom.say("seven choose");
                     document.getElementById("buttonSeven").click();
-                }
+                },
             },
             {
                 indexes: ["option nine", "option 9"],
@@ -72,7 +71,7 @@ export default class VoiceCommands {
                 action: () => {
                     Artyom.say("nine choose");
                     document.getElementById("buttonNine").click();
-                }
+                },
             },
         ]);
     }

@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
-import LoginForm from '../components/LoginForm/LoginForm';
-import SignUpForm from '../components/SignUpForm/SignUpForm'
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import LoginForm from "../components/LoginForm/LoginForm";
+import SignUpForm from "../components/SignUpForm/SignUpForm";
 
-import { SignUp }  from "../utils/HttpRequests";
+import { SignUp } from "../utils/HttpRequests";
 
 class Login extends Component {
     state = {
@@ -13,40 +13,39 @@ class Login extends Component {
     };
 
     showModal = () => {
-      this.setState({visible: true});
+        this.setState({ visible: true });
     };
 
-    handleOk = (values) => {
-
+    handleOk = values => {
         SignUp(values);
 
-        this.setState({visible: false});
-      // this.setState({ loading: true });
+        this.setState({ visible: false });
+        // this.setState({ loading: true });
         // setTimeout(()=>{
         //    this.setState({loading: false, visible: false});
         // }, 3000);
     };
 
     handleCancel = () => {
-        this.setState({visible: false});
+        this.setState({ visible: false });
     };
 
     componentDidMount() {
-        const accessToken = localStorage.getItem('access_token');
+        const accessToken = localStorage.getItem("access_token");
         // const refreshToken = localStorage.getItem('refresh_token');
         // console.log('ACCESS::::', accessToken);
 
-        this.setState({accessToken})
+        this.setState({ accessToken });
     }
 
     render() {
-        const {accessToken} = this.state;
+        const { accessToken } = this.state;
 
-        if (accessToken !== null){
-            return (<Redirect to = {{pathname: "/games"}}/>);
+        if (accessToken !== null) {
+            return <Redirect to={{ pathname: "/games" }} />;
         }
 
-        return(
+        return (
             <div>
                 <LoginForm />
                 <SignUpForm
@@ -56,7 +55,6 @@ class Login extends Component {
                     handleCancel={this.handleCancel}
                     loading={this.state.loading}
                 />
-
             </div>
         );
     }
