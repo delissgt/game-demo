@@ -1,160 +1,53 @@
-import React, {Component} from "react";
-import {Form, PageHeader, Button, Input, Col} from 'antd';
-import {studentPassword} from "../../../utils/HttpRequests";
-import {checkTokenValid} from "../../../Helpers/TokenValid";
-import {Redirect, withRouter} from "react-router-dom";
-
+import React, { Component } from "react";
+import { Form, PageHeader, Button, Input, Col } from "antd";
+import { studentPassword } from "../../../utils/HttpRequests";
+import { checkTokenValid } from "../../../Helpers/TokenValid";
+import { Redirect, withRouter } from "react-router-dom";
+import { passwordRule, passwordAgainRule } from "../../FormRules/Rules";
 
 class ChangePassword extends Component {
-    state ={
-      size: this.props.componentSize,
+    state = {
+        size: this.props.componentSize,
     };
 
     onFinish = values => {
-        studentPassword(values, this.props['history']);
+        studentPassword(values, this.props["history"]);
     };
 
     render() {
         if (checkTokenValid === false) {
-            return <Redirect to = {{pathname: "/login"}} />
+            return <Redirect to={{ pathname: "/login" }} />;
         }
 
         const { componentSize } = this.props;
 
-        return(
-            <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }}  style={{ paddingTop: '50px' }}>
-                <PageHeader title="Cambia tu contraseña"/>
-               <Form
-                   onFinish={this.onFinish}
-                   size={componentSize}
-               >
-                   <Form.Item
-                       name="password"
-                       label="Contraseña"
-                       rules={[
-                           {
-                               required: true,
-                               message: 'Ingresa tu contraseña!',
-                           },
-                           () => ({
-                               validator(rule, value) {
-                                   if (typeof(value) !== "undefined") {
-                                       if (value.length >= 8){
-                                           return Promise.resolve();
-                                       }
-                                   }
-                                   return Promise.reject('La contreseña debe ser de minimo 8 caracteres');
-                               },
-                           }),
-                       ]}
-                       hasFeedback
-                   >
-                       <Input.Password/>
-                   </Form.Item>
+        return (
+            <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }} style={{ paddingTop: "50px" }}>
+                <PageHeader title="Cambia tu contraseña" />
+                <Form onFinish={this.onFinish} size={componentSize} layout={"vertical"}>
+                    <Form.Item name="password" label="Nueva contraseña" rules={passwordRule} hasFeedback>
+                        <Input.Password />
+                    </Form.Item>
 
-                   <Form.Item
-                       name="confirm"
-                       label="Repite tu contraseña"
-                       dependencies={['password']}
-                       hasFeedback
-                       rules={[
-                           {
-                               required: true,
-                               message: 'Repite tu contraseña!'
-                           },
-                           ({getFieldValue}) => ({
-                               validator(rule, value) {
-                                   if (!value || getFieldValue('password') === value) {
-                                       return Promise.resolve();
-                                   }
-                                   return Promise.reject('Las contraseñas que ingresaste no coinciden');
-                               },
-                           }),
-                       ]}
-                   >
-                       <Input.Password/>
-                   </Form.Item>
+                    <Form.Item
+                        name="confirm"
+                        label="Confirma la nueva contraseña:"
+                        dependencies={["password"]}
+                        hasFeedback
+                        rules={passwordAgainRule}
+                    >
+                        <Input.Password />
+                    </Form.Item>
 
-                   <Form.Item>
-                       <Button type="primary" htmlType="submit" key="submit" onClick={this.handleChangeValues}>
-                           Guardar Cambios
-                       </Button>
-                   </Form.Item>
-
-
-                   {/*<Form.Item*/}
-                   {/*    name="password"*/}
-                   {/*    label="Contraseña"*/}
-                   {/*    rules={[*/}
-                   {/*    // {*/}
-                   {/*    //     required: true,*/}
-                   {/*    //     message: "ingresa tu nueva contraseña",*/}
-                   {/*    // },*/}
-                   {/*    () => ({*/}
-                   {/*        validator(rule, value) {*/}
-                   {/*            if (typeof(value) !== "undefined") {*/}
-                   {/*                if (value.length >= 8){*/}
-                   {/*                    return Promise.resolve();*/}
-                   {/*                }*/}
-                   {/*                return Promise.reject('La contreseña debe ser de minimo 8 caracteres');*/}
-                   {/*            }*/}
-                   {/*        },*/}
-                   {/*    }),*/}
-                   {/*    ]}*/}
-                   {/*    hasFeedback*/}
-                   {/*    >*/}
-                   {/*    <Input.Password/>*/}
-                   {/*    </Form.Item>*/}
-                   {/*    <Form.Item*/}
-                   {/*        name="confirm"*/}
-                   {/*        label="Repite la contraseña"*/}
-                   {/*        dependencies={["password"]}*/}
-                   {/*        hasFeedback*/}
-                   {/*        rules={[*/}
-                   {/*            // {*/}
-                   {/*            //     required: true,*/}
-                   {/*            //     message: "Este campo es necesario para cambiar la contraseña"*/}
-                   {/*            // },*/}
-                   {/*            ({getFieldValue}) => ({*/}
-                   {/*                validator(rule, value) {*/}
-                   {/*                    console.log('getValues cont', getFieldValue('password'));*/}
-                   {/*                    console.log('values REp Cont', value);*/}
-
-                   {/*                    if (getFieldValue('password') !== "undefined" && value === 'undefined')  {*/}
-                   {/*                        // if (getFieldValue('password').length !== 0 && value.length === 0){*/}
-                   {/*                            return Promise.resolve();*/}
-                   {/*                        // }*/}
-                   {/*                    }*/}
-                   {/*                    return Promise.reject('Este campo es nesario para cambiar la contraseña');*/}
-                   {/*                },*/}
-                   {/*            }),*/}
-
-                   {/*            ({getFieldValue}) => ({*/}
-                   {/*                validator(rule, value) {*/}
-                   {/*                    if (!value || getFieldValue('password') === value) {*/}
-                   {/*                        return Promise.resolve();*/}
-                   {/*                    }*/}
-                   {/*                    return Promise.reject('Las contraseñas que ingresaste no coinciden');*/}
-                   {/*                },*/}
-                   {/*            }),*/}
-                   {/*        ]}*/}
-                   {/*    >*/}
-                   {/*        <Input.Password/>*/}
-                   {/*    </Form.Item>*/}
-
-                   {/*    <Form.Item>*/}
-                   {/*        <Button type="primary" htmlType="submit" key="submit" onClick={this.handleChangeValues}>*/}
-                   {/*            Guardar Cambios*/}
-                   {/*        </Button>*/}
-                   {/*    </Form.Item>*/}
-
-               </Form>
-
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" key="submit" onClick={this.handleChangeValues}>
+                            Guardar Cambios
+                        </Button>
+                    </Form.Item>
+                </Form>
             </Col>
-
         );
     }
-
 }
 
 export default withRouter(ChangePassword);
