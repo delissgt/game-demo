@@ -30,13 +30,17 @@ export function deleteTokenValid() {
     localStorage.clear();
 }
 
-export function refreshToken(history) {
+// todo add setResponse function in all calls if not needed so ()=>{}
+export function refreshToken(history, setResponse) {
+    console.log('REFRESH TOKEN');
     const refreshToken = localStorage.getItem("refresh_token");
 
     axios
         .post(urlBackend + "/refresh-token", {}, { headers: { Authorization: `Bearer ${refreshToken}` } })
         .then(response => {
             localStorage.setItem("access_token", response.data["access_token"]);
+            console.log('ACCESSO TOKEN REFRESCADO', response.data["access_token"]);
+            setResponse();
         })
         .catch(error => {
             deleteTokenValid();
@@ -47,3 +51,8 @@ export function refreshToken(history) {
             });
         });
 }
+
+// todo components and funtions properties better code
+// Prop.refreshToken {
+//     'history': string
+// }

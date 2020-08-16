@@ -19,28 +19,22 @@ class Games extends Component {
     };
 
     componentDidMount() {
-        DataGames(this.setGames);
-        // DataGames((games) => {
-        //     this.setState({'games2': games});
-        //     this.setState({'loading': false});
-        // })
+        if (checkTokenValid() === false) {
+            refreshToken(this.props.history, () => {DataGames(this.setGames)})
+        }else{
+            DataGames(this.setGames);
+        }
     }
 
     render() {
-        console.log("render Games...");
-        if (checkTokenValid() === false) {
-            refreshToken(this.props.history);
-        }
+        const { games, loading } = this.state;
 
-        const { games } = this.state;
-
-        return this.state.loading === true ? (
+        return loading === true ? (
             <div style={SpinStyle.spincontainer}>
                 <Spin tip="Cargando Juegos ..." size={"large"} style={SpinStyle.spin} />
             </div>
         ) : (
             <SideNavigation currentKey="1">
-                {/*<RecognitionVoice/>*/}
                 <Cards games={games} />
             </SideNavigation>
         );
