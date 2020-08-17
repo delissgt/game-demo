@@ -21,6 +21,7 @@ class SideNavigation extends Component {
 
     menuClicked = e => {
         this.setState({ selectedKey: e.key });
+        window.location = e.item.props.children[1].props.to
     };
 
     render() {
