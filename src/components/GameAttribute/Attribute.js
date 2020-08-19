@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Steps, Button, message, Space } from "antd";
+import HomeOutlined from "@ant-design/icons/lib/icons/HomeOutlined";
 import DobleCards from "./DobleCards";
 import Impostor from "./Impostor";
 import Review from "./Review";
@@ -9,7 +10,7 @@ import buildUpStory from "../../assets/Story/Story-BuildUp.pdf";
 import climaxStory from "../../assets/Story/Story-Climax.pdf";
 import { checkTokenValid, refreshToken } from "../../Helpers/TokenValid";
 // import AttributeExercise from "./AttributeExercise"; TODO DELETE FILE
-// import AttributeTest from "./AttributeTest"; TODO DELETE FILE
+
 // import AttributeTestMedium from "./AttributeTestMedium"; TODO DELETE FILE
 // import AttributeDifficult from "./AttributeDifficult"; TODO DELETE FILE
 import "../steps.css";
@@ -107,21 +108,21 @@ class Attribute extends Component {
         window.scrollTo(0, 0);
 
         if (checkTokenValid() === false) {
-            refreshToken(this.props.history);
+            refreshToken(this.props.history, ()=>{});
         }
 
         return (
             <div style={{ padding: 20 }}>
                 <div style={{ display: "inline-flex", "justify-content": "space-between" }}>
-                    {/*<Space >*/}
-                    <Button>Button casita</Button>
+                    <Space >
+                    <Button href={"/games"} shape={"circle"} icon={<HomeOutlined />} size={"large"} type={"primary"} ghost />
 
                     <Steps current={current}>
                         {steps.map(item => (
                             <Step key={item.title} title={item.title} />
                         ))}
                     </Steps>
-                    {/*</Space>*/}
+                    </Space>
                 </div>
                 {/*<div className="steps-content">{steps[current].content}</div>*/}
                 <div
