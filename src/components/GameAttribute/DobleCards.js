@@ -11,7 +11,6 @@ import Giraffe from "../../assets/Animals/giraffe-48.png";
 import { AttributeGame } from "../../utils/HttpRequestGame";
 
 import "./style.css";
-import VoiceControl from "../VoiceControl/VoiceControl";
 
 const { Meta } = Card;
 
@@ -46,7 +45,6 @@ const DobleCards = props => {
     }, []);
 
     const validateKey = event => {
-        console.log("reciviendo dato", event);
         let e;
         event.key ? (e = event.key) : (e = event.toString());
 
@@ -70,11 +68,6 @@ const DobleCards = props => {
                 setAnswer3(9);
                 break;
             default:
-                // notification.open({
-                //     message: "Upppss Tecla no valida",
-                //     description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
-                //     icon: <AppstoreAddOutlined style={{color: '#00e6bb'}} />
-                // });
                 break;
         }
     };
@@ -88,7 +81,6 @@ const DobleCards = props => {
                     Da click en el boton "Revisar mis respuestas" cuando hayas terminado. TIP: El valor del atributo no
                     describe bien a los atributos del animal. Ayudate con la tarjeta del Leon.
                 </h2>
-                {/*<VoiceControl/>*/}
             </div>
 
             <Row gutter={16}>

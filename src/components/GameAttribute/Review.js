@@ -3,10 +3,9 @@ import { Row, Col, Card, Radio, Divider, notification, Button } from "antd";
 import CodeMirror from "react-codemirror";
 import "codemirror/lib/codemirror.css";
 import "codemirror/mode/javascript/javascript";
-import { AppstoreAddOutlined, MehOutlined } from "@ant-design/icons";
+import { MehOutlined } from "@ant-design/icons";
 import { AttributeGame } from "../../utils/HttpRequestGame";
 import "./style.css";
-import VoiceControl from "../VoiceControl/VoiceControl";
 
 const Review = props => {
     const [size] = useState(localStorage.getItem("size"));
@@ -62,11 +61,6 @@ const Review = props => {
                 setAnswer3(9);
                 break;
             default:
-                notification.open({
-                    message: "Upppss Tecla no valida",
-                    description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
-                    icon: <AppstoreAddOutlined style={{ color: "#00e6bb" }} />,
-                });
                 break;
         }
     };
@@ -88,7 +82,7 @@ const Review = props => {
                     }
                   }`;
 
-    const code3 = `class Aves = {
+    const code3 = `class Ave = {
                     constructor (temporada_muda, dieta, cantidad_alimento, migratoria) {
                         this.temporada_muda = temporada_muda;
                         this.dieta = dieta;
@@ -113,7 +107,6 @@ const Review = props => {
                     Lee los requerimientos luego identifica los atributos que se necesitan para cada clase de animal.
                     Revisa si es codigo de la derecha tiene los atributos que se piden.
                 </h2>
-                <VoiceControl />
             </div>
 
             <Col span={12}>
@@ -124,6 +117,7 @@ const Review = props => {
                         handleClick();
                     }}
                     className={"button-check-answer"}
+                    id={"buttonSendAnswers"}
                 >
                     Revisar Respuestas
                 </Button>

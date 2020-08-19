@@ -11,8 +11,7 @@ import flamingo from "../../assets/Animals/flamingo-48.png";
 import { AttributeGame } from "../../utils/HttpRequestGame";
 
 import "./style.css";
-import { AppstoreAddOutlined, MehOutlined } from "@ant-design/icons";
-import VoiceControl from "../VoiceControl/VoiceControl";
+import { MehOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
 
@@ -23,6 +22,7 @@ const Impostor = props => {
     const [answer3, setAnswer3] = useState(0);
 
     const handleClick = () => {
+        console.log('CLICK IMPOSTOR RESPUESTAS');
         if (answer1 === 0 || answer2 === 0 || answer3 === 0) {
             notification.open({
                 message: "Contesta TODAS las preguntas",
@@ -48,6 +48,7 @@ const Impostor = props => {
     const validateKey = event => {
         let e;
         event.key ? (e = event.key) : (e = event.toString());
+        console.log("evento scroll", e);
 
         switch (e) {
             case "1":
@@ -69,11 +70,6 @@ const Impostor = props => {
                 setAnswer3(9);
                 break;
             default:
-                notification.open({
-                    message: "Upppss Tecla no valida",
-                    description: "Activa tu teclado numerico o asegurate de teclear un numero valido del ejercicio",
-                    icon: <AppstoreAddOutlined style={{ color: "#00e6bb" }} />,
-                });
                 break;
         }
     };
@@ -87,7 +83,6 @@ const Impostor = props => {
                     atributos que no son importantes o no deberian de estar. Al final da click para revisar tus
                     respuestas. Animo !
                 </h2>
-                <VoiceControl />
             </div>
             <Col span={12}>
                 <Button
@@ -97,6 +92,7 @@ const Impostor = props => {
                         handleClick();
                     }}
                     className={"button-check-answer"}
+                    id={"buttonSendAnswers"}
                 >
                     Revisar Respuestas
                 </Button>
