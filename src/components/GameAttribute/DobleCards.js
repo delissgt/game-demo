@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Card, Divider, Col, Row, Button, Radio, notification } from "antd";
 import { MehOutlined, SmileOutlined, AppstoreAddOutlined } from "@ant-design/icons";
 import { Avatar } from "antd/es";
@@ -9,6 +9,7 @@ import Leopard from "../../assets/Animals/leopard-48.png";
 import Giraffe from "../../assets/Animals/giraffe-48.png";
 
 import { AttributeGame } from "../../utils/HttpRequestGame";
+import {validationKey} from "../../Helpers/ValidationKey";
 
 import "./style.css";
 
@@ -41,36 +42,8 @@ const DobleCards = props => {
     };
 
     useEffect(() => {
-        window.addEventListener("keyup", validateKey, false);
+        window.addEventListener("keyup", (event)  => {validationKey(event, setAnswer1, setAnswer2, setAnswer3)}, false);
     }, []);
-
-    const validateKey = event => {
-        let e;
-        event.key ? (e = event.key) : (e = event.toString());
-
-        switch (e) {
-            case "1":
-                setAnswer1(1);
-                break;
-            case "3":
-                setAnswer1(3);
-                break;
-            case "4":
-                setAnswer2(4);
-                break;
-            case "6":
-                setAnswer2(6);
-                break;
-            case "7":
-                setAnswer3(7);
-                break;
-            case "9":
-                setAnswer3(9);
-                break;
-            default:
-                break;
-        }
-    };
 
     return (
         <div>

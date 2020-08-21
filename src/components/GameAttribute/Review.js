@@ -6,6 +6,7 @@ import "codemirror/mode/javascript/javascript";
 import { MehOutlined } from "@ant-design/icons";
 import { AttributeGame } from "../../utils/HttpRequestGame";
 import "./style.css";
+import {validationKey} from "../../Helpers/ValidationKey";
 
 const Review = props => {
     const [size] = useState(localStorage.getItem("size"));
@@ -34,36 +35,8 @@ const Review = props => {
     };
 
     useEffect(() => {
-        window.addEventListener("keyup", validateKey, false);
+        window.addEventListener("keyup", (event)  => {validationKey(event, setAnswer1, setAnswer2, setAnswer3)}, false);
     }, []);
-
-    const validateKey = event => {
-        let e;
-        event.key ? (e = event.key) : (e = event.toString());
-
-        switch (e) {
-            case "1":
-                setAnswer1(1);
-                break;
-            case "3":
-                setAnswer1(3);
-                break;
-            case "4":
-                setAnswer2(4);
-                break;
-            case "6":
-                setAnswer2(6);
-                break;
-            case "7":
-                setAnswer3(7);
-                break;
-            case "9":
-                setAnswer3(9);
-                break;
-            default:
-                break;
-        }
-    };
 
     const code1 = `class Carnivoro = {
                     constructor(cantidad, peso, salud){
