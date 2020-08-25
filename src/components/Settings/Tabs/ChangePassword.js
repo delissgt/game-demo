@@ -3,7 +3,7 @@ import { Form, PageHeader, Button, Input, Col } from "antd";
 import { studentPassword } from "../../../utils/HttpRequests";
 import { checkTokenValid } from "../../../Helpers/TokenValid";
 import { Redirect, withRouter } from "react-router-dom";
-import { passwordRule, passwordAgainRule } from "../../FormRules/Rules";
+import { passwordRule, passwordAgainRule } from "../../../Helpers/FormRules/Rules";
 
 class ChangePassword extends Component {
     state = {

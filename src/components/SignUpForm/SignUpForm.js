@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button, Form, Input, Space } from "antd";
-import { usernameRule, enrollmentRule, passwordRule, passwordAgainRule } from "../FormRules/Rules";
+import { usernameRule, enrollmentRule, passwordRule, passwordAgainRule } from "../../Helpers/FormRules/Rules";
 
 const formItemLayout = {
     labelCol: {

@@ -5,7 +5,7 @@ import "./loginForm.css";
 import { Login } from "../../utils/HttpRequests";
 import buttonSound from "../../assets/button-37.mp3";
 import { withRouter } from "react-router-dom";
-import { enrollmentRule, passwordRule } from "../FormRules/Rules";
+import { enrollmentRule, passwordRule } from "../../Helpers/FormRules/Rules";
 
 const loginForm = props => {
     const onFinish = values => {
