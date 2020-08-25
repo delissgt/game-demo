@@ -9,7 +9,7 @@ import { checkTokenValid, refreshToken } from "../Helpers/TokenValid";
 // const urlBackend = config.urlBackend;
 const urlGame = "http://localhost:5000/v1";
 
-export const AttributeGame = values => {
+export const AttributeGame = (values, history) => {
     const accessToken = localStorage.getItem("access_token");
 
     if (accessToken !== null) {
@@ -18,14 +18,11 @@ export const AttributeGame = values => {
             game_level: values.game_level,
             user_answer: values.user_answer,
         };
-
-        console.log("DATA", data);
+        // console.log("DATA", data);
 
         axios
             .put(urlGame + "/score", data, { headers: { Authorization: `Bearer ${accessToken}` } })
             .then(response => {
-                console.log("response", response.data["score"]);
-                console.log("response tipeee", typeof response.data["score"]);
                 console.log("RESPONSE OK", response.status);
                 notification.success({
                     message: "Wooo !!! obtubiste " + response.data["score"] + " / 3 aciertos",
@@ -33,12 +30,12 @@ export const AttributeGame = values => {
                 });
             })
             .catch(error => {
-                console.log("EERROR", error);
+                console.log("ERROR", error);
                 let message = "Algo malo paso";
                 if (error.response) {
                     switch (error.response.status) {
                         case 401:
-                            // todo refresh token
+                            refreshToken(history,()=>{AttributeGame(values, history)});
                             break;
                         case 400:
                             message = "No se pudo actualizar tus resultados, intentalo mas tarde";

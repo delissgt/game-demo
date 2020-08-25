@@ -36,8 +36,7 @@ const DobleCards = props => {
                     A3: answer3,
                 },
             };
-
-            AttributeGame(game);
+            AttributeGame(game, props.parentHistory);
         }
     };
 
