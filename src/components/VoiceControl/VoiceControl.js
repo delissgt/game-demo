@@ -40,6 +40,8 @@ export default class VoiceControl extends React.Component {
             continuous: true,
             soundex: true,
             listen: true,
+            obeyKeyword: "Emma",
+            executionKeyword: "ahora",
         })
             .then(() => {
                 // Display loaded commands in the console
