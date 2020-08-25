@@ -1,5 +1,3 @@
-import { message } from "antd";
-
 export const usernameRule = [
     {
         required: true,
