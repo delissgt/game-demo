@@ -30,7 +30,7 @@ const Review = props => {
                 },
             };
 
-            AttributeGame(game);
+            AttributeGame(game, props.parentHistory);
         }
     };
 
