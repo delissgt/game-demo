@@ -4,7 +4,6 @@ import { SettingOutlined, PlayCircleOutlined, LogoutOutlined } from "@ant-design
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { deleteTokenValid } from "../Helpers/TokenValid";
-import SettingForm from "./Settings/SettingForm";
 import VoiceControl from "./VoiceControl/VoiceControl";
 import "./sideNavigation.css";
 
@@ -21,7 +20,7 @@ class SideNavigation extends Component {
 
     menuClicked = e => {
         this.setState({ selectedKey: e.key });
-        window.location = e.item.props.children[1].props.to
+        // window.location = e.item.props.children[1].props.to
     };
 
     render() {
