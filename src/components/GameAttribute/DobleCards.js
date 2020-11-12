@@ -29,6 +29,7 @@ const DobleCards = props => {
             });
         } else {
             let game = {
+                game_section: "attribute",
                 game_level: "game1",
                 user_answer: {
                     A1: answer1,

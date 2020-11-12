@@ -31,6 +31,7 @@ const Impostor = props => {
             });
         } else {
             let game = {
+                game_section: "attribute",
                 game_level: "game2",
                 user_answer: {
                     A1: answer1,

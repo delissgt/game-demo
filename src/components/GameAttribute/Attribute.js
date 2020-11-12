@@ -5,17 +5,14 @@ import DobleCards from "./DobleCards";
 import Impostor from "./Impostor";
 import Review from "./Review";
 import ShowPdf from "../showPdf/showPdf";
-import introductionStory from "../../assets/Story/Story-Introduction.pdf";
-import buildUpStory from "../../assets/Story/Story-BuildUp.pdf";
-import climaxStory from "../../assets/Story/Story-Climax.pdf";
+import introduction from "../../assets/Story/Story-p1-attribute.pdf";
+import buildUp from "../../assets/Story/Story-p2-attribute.pdf";
+import climax from "../../assets/Story/Story-p3-attribute.pdf";
+import ending from "../../assets/Story/Story-p4-attribute.pdf";
+//import comic1 from "../../assets/Story/comicInk.svg";
 import { checkTokenValid, refreshToken } from "../../Helpers/TokenValid";
-// import AttributeExercise from "./AttributeExercise"; TODO DELETE FILE
-
-// import AttributeTestMedium from "./AttributeTestMedium"; TODO DELETE FILE
-// import AttributeDifficult from "./AttributeDifficult"; TODO DELETE FILE
 import "../steps.css";
-
-import Speech from "../RecognitionVoice/RecognitionVoice";
+//import Speech from "../RecognitionVoice/RecognitionVoice";
 
 import { Link } from "react-router-dom";
 
@@ -33,20 +30,20 @@ class Attribute extends Component {
     next() {
         const current = this.state.current + 1;
         this.setState({ current });
-        // this.setState({currentText: "Sa"})
     }
 
-    prev() {
-        const current = this.state.current - 1;
-        this.setState({ current });
-    }
+    // prev() {
+    //     const current = this.state.current - 1;
+    //     this.setState({ current });
+    // }
 
     steps = [
         {
             title: "Idea",
             content: (
                 <ShowPdf
-                    storyFile={introductionStory}
+                    storyFile={introduction}
+                    // storyFile={comic1}
                     titleColor={"linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(144,244,137,1) 100%)"}
                 />
             ),
@@ -59,7 +56,7 @@ class Attribute extends Component {
             title: "Mas atributos",
             content: (
                 <ShowPdf
-                    storyFile={buildUpStory}
+                    storyFile={buildUp}
                     titleColor={"linear-gradient(90deg, rgba(0,230,187,1) 0%, rgba(0,209,237,1) 100%)"}
                 />
             ),
@@ -72,20 +69,20 @@ class Attribute extends Component {
             title: "De-Soft",
             content: (
                 <ShowPdf
-                    storyFile={climaxStory}
+                    storyFile={climax}
                     titleColor={"linear-gradient(90deg, rgba(0,181,255,1) 0%, rgba(24,144,255,1) 100%)"}
                 />
             ),
         },
         {
-            title: "Revisando ando",
+            title: "Revisando",
             content: <Review titleColor={"linear-gradient(90deg, rgba(24,144,255,1) 0%, rgba(103,125,233,1) 100%)"} parentHistory={this.props.history} />,
         },
         {
             title: "Fiesta",
             content: (
                 <ShowPdf
-                    storyFile={climaxStory}
+                    storyFile={ending}
                     titleColor={"linear-gradient(90deg, rgba(103,125,233,1) 0%, rgba(134,107,206,1) 100%)"}
                 />
             ),
@@ -126,11 +123,11 @@ class Attribute extends Component {
                 </div>
 
                 <div className="steps-action">
-                    {current > 0 && (
-                        <Button style={{ marginRight: 16, width: "49%" }} size="large" onClick={() => this.prev()} >
-                            Anterior solo demo
-                        </Button>
-                    )}
+                    {/*{current > 0 && (*/}
+                    {/*    <Button style={{ marginRight: 16, width: "49%" }} size="large" onClick={() => this.prev()} >*/}
+                    {/*        Anterior solo demo*/}
+                    {/*    </Button>*/}
+                    {/*)}*/}
 
                     {current < this.steps.length - 1 && (
                         <Button

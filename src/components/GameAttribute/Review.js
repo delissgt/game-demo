@@ -22,6 +22,7 @@ const Review = props => {
             });
         } else {
             let game = {
+                game_section: "attribute",
                 game_level: "game3",
                 user_answer: {
                     A1: answer1,
