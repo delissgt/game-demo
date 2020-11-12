@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { Card, Divider, Col, Row, Button, Radio, notification } from "antd";
-import { MehOutlined, SmileOutlined, AppstoreAddOutlined } from "@ant-design/icons";
+import { MehOutlined } from "@ant-design/icons";
 import { Avatar } from "antd/es";
 
 import Lion from "../../assets/Animals/lion-48.png";

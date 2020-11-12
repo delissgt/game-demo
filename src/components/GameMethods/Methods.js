@@ -85,7 +85,7 @@ class methods extends Component {
         const { current } = this.state;
         window.scroll(0,0);
 
-        if(checkTokenValid() == false) {
+        if(checkTokenValid() === false) {
             refreshToken(this.props.history, ()=>{});
         }
 
@@ -93,6 +93,8 @@ class methods extends Component {
             <div style={{ padding: 20 }}>
                 <div style={{ display: "inline-flex", "justify-content": "space-between" }}>
                     <Space>
+                        <Button href={"/games"} shape={"circle"} icon={<HomeOutlined />} size={"large"} type={"primary"} ghost />
+
                         <Steps current={current}>
                             {this.steps.map(item => (<Step key={item.title} title={item.title}/>))}
                         </Steps>

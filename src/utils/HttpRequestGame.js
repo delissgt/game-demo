@@ -22,7 +22,7 @@ export const AttributeGame = (values, history) => {
         axios
             .put(urlGame + "/score", data, { headers: { Authorization: `Bearer ${accessToken}` } })
             .then(response => {
-                console.log("RESPONSE OK", response.status);
+                // console.log("RESPONSE OK", response.status);
                 notification.success({
                     message: "Wooo !!! obtubiste " + response.data["score"] + " / 3 aciertos",
                     icon: <SmileOutlined />,
@@ -74,7 +74,7 @@ export const DataGames = setResponseState => {
                 // console.log('responseGamesDataGAMESSS', response.data.games);
 
                 const games = response.data.games;
-                console.log("GAMES", games);
+                // console.log("GAMES", games);
                 setResponseState(games);
             })
             .catch(error => {

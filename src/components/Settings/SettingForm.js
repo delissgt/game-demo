@@ -32,7 +32,7 @@ class settingForm extends Component {
                         }
                         key="1"
                     >
-                        <ChangeComponentsSize componentSize={this.state.size} callback={this.onChangeSize} />
+                        <ChangeComponentsSize componentSize={size} callback={this.onChangeSize} />
                     </TabPane>
                     <TabPane
                         forceRender={true}
@@ -44,7 +44,7 @@ class settingForm extends Component {
                         }
                         key="2"
                     >
-                        <ChangePassword componentSize={this.state.size} />
+                        <ChangePassword componentSize={size} />
                     </TabPane>
                 </Tabs>
             </div>

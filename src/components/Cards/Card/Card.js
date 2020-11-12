@@ -7,13 +7,11 @@ import classes from "./Card.css";
 const card = props => {
     let cardColor = "#1890ff";
 
-    console.log('PROPS EN CARD', props);
+    // console.log('PROPS EN CARD', props);
 
     return props.games.map(game => {
-        {
             game.url === "#" ? (cardColor = "#d9d9d9") : (cardColor = "#fafafa");
-        }
-        console.log('game', game.score);
+        // console.log('game', game.score);
         return (
             <React.Fragment key={game.id}>
                 <Col span={12}>
