@@ -3,7 +3,6 @@ import axios from "axios";
 import { notification } from "antd";
 import { SmileOutlined, MehOutlined } from "@ant-design/icons";
 // import * as config from "../config";
-import jwt_decode from "jwt-decode";
 
 import { checkTokenValid, refreshToken } from "../Helpers/TokenValid";
 // const urlBackend = config.urlBackend;
@@ -14,7 +13,7 @@ export const AttributeGame = (values, history) => {
 
     if (accessToken !== null) {
         const data = {
-            game_section: "attribute",
+            game_section: values.game_section,
             game_level: values.game_level,
             user_answer: values.user_answer,
         };
