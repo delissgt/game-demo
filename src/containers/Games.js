@@ -5,6 +5,7 @@ import { Spin } from "antd";
 import { checkTokenValid, refreshToken } from "../Helpers/TokenValid";
 
 import { DataGames } from "../utils/HttpRequestGame";
+import ConfettiComponent from "../components/ConfettiComponent";
 
 import RecognitionVoice from "../components/RecognitionVoice/RecognitionVoice";
 
@@ -35,6 +36,7 @@ class Games extends Component {
             </div>
         ) : (
             <SideNavigation currentKey="1">
+                <ConfettiComponent/>
                 <Cards games={games} />
             </SideNavigation>
         );
