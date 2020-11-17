@@ -7,7 +7,6 @@ import { Login } from "../../utils/HttpRequests";
 import { withRouter } from "react-router-dom";
 import { enrollmentRule, passwordRule } from "../../Helpers/FormRules/Rules";
 
-import ConfettiComponent from "../ConfettiComponent";
 
 const loginForm = props => {
     const onFinish = values => {
@@ -26,7 +25,6 @@ const loginForm = props => {
 
     return (
         <Col xs={{ span: 11, offset: 6 }} lg={{ span: 11, offset: 6 }} style={{ paddingTop: "50px" }}>
-            <ConfettiComponent/>
 
             <Form
                 name="normal_login"
