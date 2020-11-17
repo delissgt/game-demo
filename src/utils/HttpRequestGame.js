@@ -3,12 +3,12 @@ import axios from "axios";
 import { notification } from "antd";
 import { SmileOutlined, MehOutlined } from "@ant-design/icons";
 // import * as config from "../config";
-
+import ConfettiComponent from "../components/ConfettiComponent";
 import { checkTokenValid, refreshToken } from "../Helpers/TokenValid";
 // const urlBackend = config.urlBackend;
 const urlGame = "http://localhost:5000/v1";
 
-export const AttributeGame = (values, history) => {
+export const AttributeGame = (values, history, callbackConfetti) => {
     const accessToken = localStorage.getItem("access_token");
 
     if (accessToken !== null) {
@@ -27,6 +27,9 @@ export const AttributeGame = (values, history) => {
                     message: "Wooo !!! obtubiste " + response.data["score"] + " / 3 aciertos",
                     icon: <SmileOutlined />,
                 });
+                if (response.data["score"] === 3){
+                    callbackConfetti(true);
+                }
             })
             .catch(error => {
                 console.log("ERROR", error);
