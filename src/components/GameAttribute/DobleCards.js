@@ -10,7 +10,7 @@ import Giraffe from "../../assets/Animals/giraffe-48.png";
 
 import { AttributeGame } from "../../utils/HttpRequestGame";
 import {validationKey} from "../../Helpers/ValidationKey";
-
+import ConfettiComponent from "../ConfettiComponent";
 import "./style.css";
 
 const { Meta } = Card;
@@ -20,6 +20,7 @@ const DobleCards = props => {
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
     const [answer3, setAnswer3] = useState(0);
+    const [showConfetti, setConfetti] = useState(false);
 
     const handleClick = () => {
         if (answer1 === 0 || answer2 === 0 || answer3 === 0) {
@@ -37,7 +38,7 @@ const DobleCards = props => {
                     A3: answer3,
                 },
             };
-            AttributeGame(game, props.parentHistory);
+            AttributeGame(game, props.parentHistory, setConfetti );
         }
     };
 
@@ -47,6 +48,9 @@ const DobleCards = props => {
 
     return (
         <div>
+            <div style={{top: 0, position: "fixed", zIndex: 2}}>
+            <ConfettiComponent run={showConfetti}/>
+            </div>
             <div style={{ background: props.titleColor }}>
                 {/*    linear-gradient(90deg, rgba(249,248,113,1) 0%, rgba(144,244,137,1) 100%)*/}
                 <h1>Elige la tarjeta correcta de cada par de tarjetas.</h1>

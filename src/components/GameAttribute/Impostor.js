@@ -10,7 +10,7 @@ import flamingo from "../../assets/Animals/flamingo-48.png";
 
 import { AttributeGame } from "../../utils/HttpRequestGame";
 import {validationKey} from "../../Helpers/ValidationKey";
-
+import ConfettiComponent from "../ConfettiComponent";
 import "./style.css";
 import { MehOutlined } from "@ant-design/icons";
 
@@ -21,6 +21,7 @@ const Impostor = props => {
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
     const [answer3, setAnswer3] = useState(0);
+    const [showConfetti, setConfetti] = useState(false);
 
     const handleClick = () => {
         console.log('CLICK IMPOSTOR RESPUESTAS');
@@ -39,7 +40,7 @@ const Impostor = props => {
                     A3: answer3,
                 },
             };
-            AttributeGame(game, props.parentHistory);
+            AttributeGame(game, props.parentHistory, setConfetti);
         }
     };
 
@@ -49,6 +50,9 @@ const Impostor = props => {
 
     return (
         <div>
+            <div style={{top: 0, position: "fixed", zIndex: 2}}>
+                <ConfettiComponent run={showConfetti}/>
+            </div>
             <div style={{ background: props.titleColor }}>
                 <h1>Seleccina la tarjeta que mejor represente a cada grupo de animales.</h1>
                 <h2>
