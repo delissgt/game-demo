@@ -4,12 +4,14 @@ import CodeMirror from "react-codemirror";
 import {MehOutlined} from "@ant-design/icons";
 import {AttributeGame} from "../../utils/HttpRequestGame";
 import {validationKey} from "../../Helpers/ValidationKey";
+import ConfettiComponent from "../ConfettiComponent";
 
 const AppliedMethods = props => {
     const [size] = useState(localStorage.getItem("size"));
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
     const [answer3, setAnswer3] = useState(0);
+    const [showConfetti, setConfetti] = useState(false);
 
     const handleClick = () => {
         if (answer1 === 0 || answer2 === 0 || answer3 === 0){
@@ -28,7 +30,7 @@ const AppliedMethods = props => {
                 },
             };
             console.log("GAME", game);
-            AttributeGame(game, props.parentHistory)
+            AttributeGame(game, props.parentHistory, setConfetti)
         }
     };
 
@@ -107,6 +109,9 @@ const AppliedMethods = props => {
 
     return(
         <div>
+            <div style={{top: 0, position: "fixed", zIndex: 2}}>
+                <ConfettiComponent run={showConfetti}/>
+            </div>
             <div style={{ background: props.titleColor }}>
                 <h1>Que métodos faltan por agregar en el código</h1>
                 <h2>

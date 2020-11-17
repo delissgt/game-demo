@@ -4,6 +4,7 @@ import {MehOutlined, CheckOutlined} from "@ant-design/icons";
 import {AttributeGame} from "../../utils/HttpRequestGame";
 import {validationKey} from "../../Helpers/ValidationKey";
 import CodeMirror from "react-codemirror";
+import ConfettiComponent from "../ConfettiComponent";
 
 const AppropriateMethod = props => {
 
@@ -11,6 +12,7 @@ const AppropriateMethod = props => {
     const [answer1, setAnswer1] = useState(0);
     const [answer2, setAnswer2] = useState(0);
     const [answer3, setAnswer3] = useState(0);
+    const [showConfetti, setConfetti] = useState(false);
 
     const handleClick = () => {
         if (answer1 === 0 || answer2 === 0 || answer3 === 0){
@@ -29,7 +31,7 @@ const AppropriateMethod = props => {
                 },
             };
             console.log("GAME", game);
-            AttributeGame(game, props.parentHistory)
+            AttributeGame(game, props.parentHistory, setConfetti)
         }
     };
 
@@ -75,6 +77,9 @@ const AppropriateMethod = props => {
 
     return(
         <div>
+            <div style={{top: 0, position: "fixed", zIndex: 2}}>
+                <ConfettiComponent run={showConfetti}/>
+            </div>
             <div style={{ background: props.titleColor }}>
                 <h1>Indica si el método deberia ir o no en la clase</h1>
                 <h2>
