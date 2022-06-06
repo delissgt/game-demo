@@ -1,25 +1,61 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import SideNavigation from "../components/SideNavigation";
+import Cards from "../components/Cards/Cards";
+import { Spin } from "antd";
+import { checkTokenValid, refreshToken } from "../Helpers/TokenValid";
 
+import { DataGames } from "../utils/HttpRequestGame";
+import ConfettiComponent from "../components/ConfettiComponent";
 
+import RecognitionVoice from "../components/RecognitionVoice/RecognitionVoice";
 
-class Games extends Component{
+class Games extends Component {
     state = {
-        games: [
-            {id:1, title:'Atributos', description:'Aprenderas Atributos', gamePage:'/games/attributes'},
-            {id:2, title:'Metodos', description:'Aprenderas Metodos', gamePage:'/../games/methods'},
-        ]
+        loading: true,
     };
 
-    render() {
-        return (
-            <div>
-                {/*<h1>Pagina de Juegos</h1>*/}
-                <SideNavigation games={this.state.games} />
+    setGames = games => {
+        this.setState({ games: games });
+        this.setState({ loading: false });
+    };
 
+    componentDidMount() {
+        if (checkTokenValid() === false) {
+            refreshToken(this.props.history, () => {DataGames(this.setGames)})
+        }else{
+            DataGames(this.setGames);
+        }
+    }
+
+    render() {
+        const { games, loading } = this.state;
+
+        return loading === true ? (
+            <div style={SpinStyle.spincontainer}>
+                <Spin tip="Cargando Juegos ..." size={"large"} style={SpinStyle.spin} />
             </div>
-        )
+        ) : (
+            <SideNavigation currentKey="1">
+                <ConfettiComponent/>
+                <Cards games={games} />
+            </SideNavigation>
+        );
     }
 }
 
-export default Games
+export default Games;
+
+const SpinStyle = {
+    spincontainer: {
+        height: "100%",
+        width: "100%",
+        padding: "24px",
+        alignItems: "center",
+    },
+    spin: {
+        textAlign: "center",
+        marginBottom: "50px",
+        padding: "30px 50px",
+        margin: "40px 0",
+    },
+};

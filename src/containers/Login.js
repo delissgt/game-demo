@@ -1,35 +1,60 @@
-import React, {Component} from 'react';
-import {Form, Button, Input} from 'antd';
-import {Link} from 'react-router-dom';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import LoginForm from "../components/LoginForm/LoginForm";
+import SignUpForm from "../components/SignUpForm/SignUpForm";
+
+import { SignUp } from "../utils/HttpRequests";
 
 class Login extends Component {
-    state= {
-        pageGame: 'something'
+    state = {
+        visible: false,
+        loading: false,
+        accessToken: null,
     };
 
-    myFunctionClickOk = () => {
-        this.setState({pageGame: '/pagigna/juego/1'});
+    showModal = () => {
+        this.setState({ visible: true });
     };
+
+    handleOk = values => {
+        SignUp(values);
+
+        this.setState({ visible: false });
+        // this.setState({ loading: true });
+        // setTimeout(()=>{
+        //    this.setState({loading: false, visible: false});
+        // }, 3000);
+    };
+
+    handleCancel = () => {
+        this.setState({ visible: false });
+    };
+
+    componentDidMount() {
+        const accessToken = localStorage.getItem("access_token");
+        // const refreshToken = localStorage.getItem('refresh_token');
+        // console.log('ACCESS::::', accessToken);
+
+        this.setState({ accessToken });
+    }
 
     render() {
-        return(
+        const { accessToken } = this.state;
+
+        if (accessToken !== null) {
+            return <Redirect to={{ pathname: "/games" }} />;
+        }
+
+        return (
             <div>
-                <Form layout="inline">
-                    <Form.Item>
-                        <Input placeholder="username"/>
-                    </Form.Item>
-                    <Form.Item>
-                        <Input type="password" placeholder="contraseña"/>
-                    </Form.Item>
-                    <Form.Item>
-                        <Link to={'/games'}>
-                        <Button
-                            type="primary"
-                            onClick={this.myFunctionClickOk}
-                        >Login</Button>
-                        </Link>
-                    </Form.Item>
-                </Form>
+                <LoginForm />
+                <SignUpForm
+                    visible={this.state.visible}
+                    showModal={this.showModal}
+                    handleOk={this.handleOk}
+                    handleCancel={this.handleCancel}
+                    loading={this.state.loading}
+                />
             </div>
         );
     }

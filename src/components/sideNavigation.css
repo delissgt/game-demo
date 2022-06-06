@@ -1,0 +1,22 @@
+.menu-item-adapted {
+    display: block;
+    height: 71px;
+}
+
+.anticon {
+    display: block;
+}
+
+.ant-menu-item {
+    height: 71px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.height-menu-item-adapted {
+    height: 71px;
+}
+
+.size-icon-adapted {
+    font-size: 20px;
+}

@@ -1,50 +1,92 @@
-import React from 'react';
-import {Layout, Menu, Icon, Button} from "antd";
+import React, { Component } from "react";
+import { Layout, Menu } from "antd";
+import { SettingOutlined, PlayCircleOutlined, LogoutOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { deleteTokenValid } from "../Helpers/TokenValid";
+import VoiceControl from "./VoiceControl/VoiceControl";
+import "./sideNavigation.css";
 
-import CardGame from "./cardGame";
+const { Sider, Header, Content, Footer } = Layout;
 
-const {Header, Content, Footer, Sider} = Layout;
+class SideNavigation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedKey: props.currentKey,
+            children: props.children,
+        };
+    }
 
+    menuClicked = e => {
+        this.setState({ selectedKey: e.key });
+        // window.location = e.item.props.children[1].props.to
+    };
 
-const SideNavigation = (props) => {
-        // console.log('props in SideNavitaion', props.games);
-    return(
-        <Layout>
-            <Sider style={{
-                overflow: 'auto',
-                height: '100vh',
-                position: 'fixed',
-                left: 0,
-            }}>
-                <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        <Menu.Item key="1">
-                            <Icon type="play-circle" theme="filled" />
-                            <span className="nav-text">Juego</span>
+    render() {
+        let { selectedKey } = this.state;
+
+        if (selectedKey === "3") {
+            deleteTokenValid();
+            return <Redirect to={{ pathname: "/login" }} />;
+        }
+
+        return (
+            <Layout>
+                <Sider
+                    style={{
+                        overflow: "auto",
+                        height: "100vh",
+                        position: "fixed",
+                        left: 0,
+                    }}
+                    theme={"light"}
+                    className={"menu-item-adapted"}
+                    width={150}
+                >
+                    <div className="logo" />
+                    <Menu
+                        theme="light"
+                        mode="inline"
+                        defaultSelectedKeys={[this.state.selectedKey]}
+                        selectedKeys={[this.state.selectedKey]}
+                        onClick={this.menuClicked}
+                        style={{ display: "block", height: "71px" }}
+                    >
+                        <Menu.Item key="1" style={{ height: "71px" }} id={"pageGame"}>
+                            <Link to={"/games"}>
+                                <PlayCircleOutlined style={{ fontSize: "20px" }} />
+                                <span className="nav-text"> Juego</span>
+                            </Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
-                            <Icon type="setting" theme="filled" />
-                            <span className="nav-text">Configuración</span>
+
+                        <Menu.Item key="2" style={{ height: "71px" }} id={"pageConfiguration"}>
+                            <Link to={"/settings"}>
+                                <SettingOutlined style={{ fontSize: "20px" }} />
+                                <span className="nav-text"> Configuración</span>
+                            </Link>
                         </Menu.Item>
-                        <Menu.Item key="3">
-                            <Icon type="logout" />
+
+                        <Menu.Item key="3" style={{ height: "71px" }}>
+                            <LogoutOutlined style={{ fontSize: "20px" }} />
                             <span className="nav-text">Salir</span>
                         </Menu.Item>
                     </Menu>
-            </Sider>
-            <Layout style={{ marginLeft: 200 }}>
-                <Header style={{ background: '#fff', padding: 0 }} />
-                <Content style={{ margin: '24px 16px 0', overflow: 'initial' }} >
-                    <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
-
-                        <CardGame game={props.games}/>
-
-                    </div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design DEliss Here</Footer>
+                </Sider>
+                <Layout style={{ marginLeft: 150 }}>
+                    <Header style={{ background: "#fff", padding: 0 }}>
+                        <VoiceControl />
+                    </Header>
+                    <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
+                        <div style={{ padding: 24, background: "#fff", textAlign: "center" }}>
+                            {this.state.children}
+                        </div>
+                    </Content>
+                    <Footer style={{ textAlign: "center" }}>... </Footer>
+                </Layout>
             </Layout>
-        </Layout>
-        )
-};
+        );
+    }
+}
 
-export default SideNavigation
+export default SideNavigation;
